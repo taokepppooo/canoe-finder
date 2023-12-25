@@ -1,0 +1,24 @@
+{
+  "name": "cf-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@farmfe/cli": "^0.5.11",
+    "@farmfe/core": "^0.14.18",
+    "@farmfe/plugin-react": "^0.4.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "react-refresh": "^0.14.0"
+  }
+}

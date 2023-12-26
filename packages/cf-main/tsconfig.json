@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "esnext",
     "lib": ["DOM", "ES2017"],
     "noEmit": true,
     "esModuleInterop": true,

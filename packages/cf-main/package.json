@@ -13,7 +13,8 @@
     "clsx": "^1.2.1",
     "core-js": "^3.30.1",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@farmfe/cli": "^0.5.11",

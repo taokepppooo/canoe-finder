@@ -4,9 +4,14 @@
     "lib": ["DOM", "ES2017"],
     "noEmit": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "jsx": "react",
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]

@@ -5,6 +5,7 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "@unocss",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -13,6 +14,7 @@
     "tsconfigRootDir": ".",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   }
 }

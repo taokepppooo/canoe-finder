@@ -5,6 +5,7 @@ import { AppContainer } from './appContainer';
 import { useDesktopAppArea } from '@/pages/welcome/desktop/useDesktopAppArea';
 import './index.scss';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 export function Desktop() {
   const numberOfContainers = 10;

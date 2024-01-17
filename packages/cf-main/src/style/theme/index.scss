@@ -1,0 +1,6 @@
+@use './mixin.scss' as mixin;
+@use './light.scss' as light;
+
+.light-theme {
+  @include mixin.apply-theme(light.$variables);
+}

@@ -1,16 +1,16 @@
 import { defineConfig } from 'unocss';
 import { shortcuts } from './unocss/shortcuts';
-import { lightTheme } from './unocss/theme';
+import { breakpoints, lightTheme } from './unocss/theme';
+import { themeRules } from './unocss/rules';
+import type { ConfigBase } from 'unocss';
 
-export default defineConfig({
+const config: ConfigBase = {
   shortcuts,
+  rules: [...themeRules],
   theme: {
-    breakpoints: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-    },
+    breakpoints,
     lightTheme,
   },
-});
+};
+
+export default defineConfig(config);

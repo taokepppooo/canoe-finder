@@ -7,6 +7,6 @@ export const useDesktopAppArea = () => {
   const areaHeight = `${appHeight} - ${OPERATE_HEIGHT}`;
 
   return {
-    height: `calc(${areaHeight})`
+    height: `calc(${areaHeight})`,
   };
 };

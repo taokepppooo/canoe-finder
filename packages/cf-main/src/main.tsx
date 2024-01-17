@@ -7,8 +7,8 @@ import '@unocss/reset/sanitize/assets.css';
 
 export function Main() {
   return (
-    <>
+    <div className="h-full light-theme">
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }

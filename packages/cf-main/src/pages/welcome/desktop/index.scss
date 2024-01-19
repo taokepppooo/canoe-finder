@@ -1,5 +1,6 @@
 .grid-template {
   grid-template-columns: repeat(auto-fill, minmax(22.5rem, 1fr));
+  grid-template-rows: 23.5rem;
 }
 
 .swiper-horizontal {
@@ -10,8 +11,8 @@
 }
 .swiper {
   .swiper-pagination {
-    $bullet-width: 3rem;
-    $bullet-height: 3rem;
+    $bullet-width: 2rem;
+    $bullet-height: 2rem;
 
     .swiper-pagination-bullet {
       width: $bullet-width;

@@ -4,7 +4,7 @@ import { Main } from './main';
 import './style/index.scss';
 import 'uno.css';
 import 'virtual:uno.css';
-import './index.scss';
+import './style/normalize.scss';
 
 const container = document.querySelector('#root');
 const root = createRoot(container);

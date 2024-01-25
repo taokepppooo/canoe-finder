@@ -17,6 +17,6 @@ export const useViewport = () => {
 
   return {
     width: viewportWidth,
-    height: viewportHeight
+    height: viewportHeight,
   };
 };

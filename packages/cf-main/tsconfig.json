@@ -3,6 +3,7 @@
     "module": "esnext",
     "lib": ["DOM", "esnext"],
     "noEmit": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "jsx": "react",

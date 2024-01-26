@@ -1,5 +1,7 @@
 {
   "cSpell.words": [
     "unocss"
-  ]
+  ],
+  "prettier.prettierPath": "",
+  "prettier.configPath": "./packages/cf-main/.prettierrc"
 }

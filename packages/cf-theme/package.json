@@ -1,0 +1,13 @@
+{
+  "name": "cf-theme",
+  "version": "1.0.0",
+  "main": "dist/index.css",
+  "scripts": {
+    "build": "gulp --gulpfile ./build/gulpfile.js minify-css"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0"
+  }
+}

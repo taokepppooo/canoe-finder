@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@unocss/reset':
-    specifier: ^0.58.2
-    version: 0.58.2
+  cf-theme:
+    specifier: file:../cf-theme
+    version: file:../cf-theme
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
@@ -1308,6 +1308,7 @@ packages:
 
   /@unocss/reset@0.58.2:
     resolution: {integrity: sha512-ZzskZzrs7fPoKWrSpF1vehIr8TI7u4eS+MSurE0qUXatg0/nsXAZvaFYu0obu1kWrmnHyzA7G+m6LMX1h1tT7Q==}
+    dev: true
 
   /@unocss/rule-utils@0.58.2:
     resolution: {integrity: sha512-cbrMvSuLf2ZMqJqmiCzIrrH59wEhnH4Ui/dnq/goWAqFe042nET8TcHz++2npc2T8EZlCMoC3zstCJzVbxGCVQ==}
@@ -3933,3 +3934,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  file:../cf-theme:
+    resolution: {directory: ../cf-theme, type: directory}
+    name: cf-theme
+    dev: false

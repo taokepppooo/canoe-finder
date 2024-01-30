@@ -5,6 +5,9 @@
     },
     {
       "path": "packages/cf-main"
+    },
+    {
+      "path": "packages/cf-theme"
     }
   ]
 }

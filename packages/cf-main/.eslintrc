@@ -2,17 +2,12 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "@unocss",
     "prettier",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
   "parser": "@typescript-eslint/parser",
   "plugins": ["react", "prettier", "@typescript-eslint"],
   "rules": {
@@ -23,7 +18,13 @@
       "semi": true
     }]
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parserOptions": {
+    "ecmaVersion":"latest",
     "tsconfigRootDir": ".",
     "ecmaFeatures": {
       "jsx": true

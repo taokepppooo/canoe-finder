@@ -1,25 +1,8 @@
 {
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-  },
-  "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact"
-  ],
-  "eslint.probe": [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "html",
-      "vue",
-      "markdown",
-      "svelte"
-  ],
-  "eslint.codeActionsOnSave.rules": null,
-  "eslint.debug": true,
-  "prettier.configPath": "./packages/cf-main/.prettierrc"
+  "prettier.configPath": "./packages/cf-main/.prettierrc",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    ".history": true,
+  }
 }

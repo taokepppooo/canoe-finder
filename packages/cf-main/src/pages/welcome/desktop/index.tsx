@@ -46,9 +46,7 @@ export function Desktop() {
 }
 
 const getSwiperSlideComponents = (containerList: DesktopContainer[]) => {
-  return containerElement();
-};
-
-const containerElement = () => {
-  return <AppContainer />;
+  return containerList.map((container, index) => {
+    return <AppContainer key={index} title={container.title} />;
+  });
 };

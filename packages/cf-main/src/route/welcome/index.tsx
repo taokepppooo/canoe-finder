@@ -4,8 +4,8 @@ import { Welcome } from '../../pages/welcome';
 const route: RouteObject[] = [
   {
     path: '/',
-    element: <Welcome />
-  }
+    element: <Welcome />,
+  },
 ];
 
 export default route;

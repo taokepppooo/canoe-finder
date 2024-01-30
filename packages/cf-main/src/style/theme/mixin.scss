@@ -1,0 +1,4 @@
+@mixin apply-theme($theme-map) {
+  --carousel-bullet-bg: #{map-get($theme-map, carousel-bullet-bg)};
+  --carousel-bullet-bg-hover: #{map-get($theme-map, carousel-bullet-bg-hover)};
+}

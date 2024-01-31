@@ -7,7 +7,7 @@
       "path": "packages/cf-main"
     },
     {
-      "path": "packages/cf-theme"
+      "path": "packages/cf-style"
     }
   ]
 }

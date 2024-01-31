@@ -10,8 +10,8 @@ export const lightTheme = {
   bg: {
     carousel: {
       bullet: {
-        color: 'var(--carousel-bullet-bg)',
-        hoverColor: 'var(--carousel-bullet-bg-hover)',
+        color: 'var(--cf-carousel-bullet-bg)',
+        hoverColor: 'var(--cf-carousel-bullet-bg-hover)',
       },
     },
   },

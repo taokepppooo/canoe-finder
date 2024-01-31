@@ -1,0 +1,9 @@
+@import './light.css'; /* 默认主题 */
+
+.carousel-bullet {
+  background-color: var(--cf-carousel-bullet-bg);
+}
+
+.carousel-bullet:hover {
+  background-color: var(--cf-carousel-bullet-bg-hover);
+}

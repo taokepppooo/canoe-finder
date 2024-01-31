@@ -17,14 +17,14 @@
       width: $bullet-width;
       height: $bullet-height;
       opacity: .5;
-      background-color: var(--carousel-bullet-bg);
+      background-color: var(--cf-carousel-bullet-bg);
     }
 
     .swiper-pagination-bullet-active {
       width: $bullet-width;
       height: $bullet-height;
       opacity: .8;
-      background: var(--carousel-bullet-bg-hover);
+      background: var(--cf-carousel-bullet-bg-hover);
     }
   }
 }

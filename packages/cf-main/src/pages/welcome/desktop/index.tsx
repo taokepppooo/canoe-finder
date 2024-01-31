@@ -8,20 +8,19 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 export function Desktop() {
+  const arr2 = [];
+  for (let i = 0; i < 200; i++) {
+    arr2.push({
+      title: 'Welcome to Cloudflare Pages',
+    });
+  }
   const swiperList: DesktopContainer[][] = [
     [
       {
         title: 'Welcome to Cloudflare Pages',
       },
     ],
-    [
-      {
-        title: 'Welcome to Cloudflare Pages',
-      },
-      {
-        title: 'Welcome to Cloudflare Pages',
-      },
-    ],
+    [...arr2],
   ];
 
   return (

@@ -4,10 +4,13 @@
       "path": "."
     },
     {
-      "path": "packages/cf-main"
+      "path": "packages/core"
     },
     {
-      "path": "packages/cf-style"
+      "path": "packages/style"
+    },
+    {
+      "path": "packages/ui"
     }
   ]
 }

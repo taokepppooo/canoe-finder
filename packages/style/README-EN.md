@@ -1,11 +1,11 @@
-# cf-style
+# @cf/style
 
 ## Structure
 
 ### File Directory
 
 ``` text
- cf-style/
+ style/
 --| theme/
 ----| index.css
 --| scrollbar/
@@ -17,8 +17,8 @@
 
 ### import init style
 
-`import 'cf-style/index.css'`
+`import '@cf/style/index.css'`
 
 ### import theme style
 
-`import 'cf-style/theme/index.css'`
+`import '@cf/style/theme/index.css'`

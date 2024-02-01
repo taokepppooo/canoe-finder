@@ -1,11 +1,11 @@
-# cf-style
+# @cf/style
 
 ## 结构
 
 ### 文件目录
 
 ``` text
- cf-style/
+ style/
 --| theme/
 ----| index.css
 --| scrollbar/
@@ -17,8 +17,8 @@
 
 ### 引入初始化样式
 
-`import 'cf-style/index.css'`
+`import '@cf/style/index.css'`
 
 ### 引入主题样式
 
-`import 'cf-style/theme/index.css'`
+`import '@cf/style/theme/index.css'`

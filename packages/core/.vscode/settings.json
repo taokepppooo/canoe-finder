@@ -1,5 +1,5 @@
 {
-  "prettier.configPath": "./packages/cf-main/.prettierrc",
+  "prettier.configPath": "./packages/core/.prettierrc",
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,

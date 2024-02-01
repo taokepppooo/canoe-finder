@@ -1,0 +1,20 @@
+{
+  "name": "@cf/ui",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@zag-js/anatomy": "^0.34.0",
+    "@zag-js/core": "^0.34.0",
+    "@zag-js/dom-query": "^0.34.0",
+    "@zag-js/mutation-observer": "^0.34.0",
+    "@zag-js/types": "^0.34.0",
+    "@zag-js/utils": "^0.34.0"
+  }
+}

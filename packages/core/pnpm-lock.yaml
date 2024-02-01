@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  cf-style:
-    specifier: file:../cf-style
-    version: file:../cf-style
+  '@cf/style':
+    specifier: file:../style
+    version: file:../style
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
@@ -3940,7 +3940,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  file:../cf-style:
-    resolution: {directory: ../cf-style, type: directory}
-    name: cf-theme
+  file:../style:
+    resolution: {directory: ../style, type: directory}
+    name: '@cf/style'
     dev: false

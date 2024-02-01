@@ -1,0 +1,86 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@zag-js/anatomy':
+    specifier: ^0.34.0
+    version: 0.34.0
+  '@zag-js/core':
+    specifier: ^0.34.0
+    version: 0.34.0
+  '@zag-js/dom-query':
+    specifier: ^0.34.0
+    version: 0.34.0
+  '@zag-js/mutation-observer':
+    specifier: ^0.34.0
+    version: 0.34.0
+  '@zag-js/types':
+    specifier: ^0.34.0
+    version: 0.34.0
+  '@zag-js/utils':
+    specifier: ^0.34.0
+    version: 0.34.0
+
+devDependencies:
+  typescript:
+    specifier: ^5.3.3
+    version: 5.3.3
+
+packages:
+
+  /@zag-js/anatomy@0.34.0:
+    resolution: {integrity: sha512-Ohm1xhG5vKUl4ynA4KnO5V2oZ9w63IbVPJ/5CZ5oAToDr9En+aCg+LRzAUQi/Er3kV7VBnQIi0OqE5pog53u5w==}
+    dev: false
+
+  /@zag-js/core@0.34.0:
+    resolution: {integrity: sha512-M3JVZM0TOnkHp6DMCiS1ZliS3l0LXOZ1wsWFpkDmUhywVP917fauazj9TcGNydCN/rF6f6cY5Z0wWsc7jEZ8YA==}
+    dependencies:
+      '@zag-js/store': 0.34.0
+      klona: 2.0.6
+    dev: false
+
+  /@zag-js/dom-query@0.34.0:
+    resolution: {integrity: sha512-cgCzqnCMjlZzVs+Zz+oHx43MpVRjolnHnxpYmGnB1oduSw0pV0XBK1x7S0Tbb+DoIrOQ5gik5zQxlQMOxTA6Kg==}
+    dev: false
+
+  /@zag-js/mutation-observer@0.34.0:
+    resolution: {integrity: sha512-bzFpocBD4DDAoKW7IBEz3Kmkg5ADJaLqLwTcGrnup3BI+PGwsnz22uMGPSak5oZs+5C9yU+tpVg59XO8lT1PDw==}
+    dev: false
+
+  /@zag-js/store@0.34.0:
+    resolution: {integrity: sha512-OiWPXZXhZ3d7NsQ42P8cx8gek3mNJ/Qp2GJqR6V+d8BuwzlC5pp4fEcl/XGT7A3Fc7QnDzZIOZepVX4vMQWJbQ==}
+    dependencies:
+      proxy-compare: 2.6.0
+    dev: false
+
+  /@zag-js/types@0.34.0:
+    resolution: {integrity: sha512-0AZCS0e+3tDgJdDK110b2SoKWkxUAzmrY5xSZcGdS/mir7Y8AvC6Jjhm5OHoFnqsLmbIKOEb7zclM5vWQwp8yw==}
+    dependencies:
+      csstype: 3.1.3
+    dev: false
+
+  /@zag-js/utils@0.34.0:
+    resolution: {integrity: sha512-I5sgYKi4266Q06qNzHPaHrz3jWi3A6zbsFVe+pI9W2BmDnmJxZKdY/onr9ImdZatXFuzP5n/n/2Ik28YtTbdFQ==}
+    dev: false
+
+  /csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+    dev: false
+
+  /klona@2.0.6:
+    resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
+    engines: {node: '>= 8'}
+    dev: false
+
+  /proxy-compare@2.6.0:
+    resolution: {integrity: sha512-8xuCeM3l8yqdmbPoYeLbrAXCBWu19XEYc5/F28f5qOaoAIMyfmBUkl5axiK+x9olUvRlcekvnm98AP9RDngOIw==}
+    dev: false
+
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+    dev: true

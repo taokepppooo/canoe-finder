@@ -12,7 +12,7 @@ export function machine(userContext: UserDefinedContext) {
       id: 'scrollbar',
       initial: 'idle',
       context: {
-        orientation: 'horizontal',
+        orientation: 'vertical',
         width: '100%',
         height: '100%',
         top: 0,

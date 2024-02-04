@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Page = () => {
   return (
-    <div className="index-nav">
+    <div>
       <h2>Zag.js + React</h2>
       <ul>
         {routesData.map((route) => (

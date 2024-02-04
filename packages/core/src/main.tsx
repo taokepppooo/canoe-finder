@@ -4,7 +4,7 @@ import { router } from './route';
 
 export function Main() {
   return (
-    <div className="h-full light-theme">
+    <div className="h-full cf-light-theme">
       <RouterProvider router={router} />
     </div>
   );

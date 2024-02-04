@@ -9,14 +9,24 @@ import type {
 
 export type ElementIds = Partial<{
   root: string;
+  content: string;
   track: string;
   thumb: string;
 }>;
+
+interface TrackState {
+  size?: Array<string | number>;
+}
+interface ThumbState {
+  size?: Array<string | number>;
+}
 
 interface PublicContext extends DirectionProperty, CommonProperties {
   orientation?: 'horizontal' | 'vertical';
   width?: string | number;
   height?: string | number;
+  track?: TrackState;
+  thumb?: ThumbState;
   top?: number;
   right?: number;
   bottom?: number;
@@ -44,6 +54,9 @@ export type Send = S.Send<S.AnyEventObject>;
 
 export interface MachineApi<T extends PropTypes = PropTypes> {
   rootProps: T['element'];
-  trackProps: T['element'];
-  thumbProps: T['element'];
+  contentProps: T['element'];
+  xTrackProps: T['element'];
+  xThumbProps: T['element'];
+  yTrackProps: T['element'];
+  yThumbProps: T['element'];
 }

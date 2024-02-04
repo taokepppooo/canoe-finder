@@ -8,36 +8,73 @@ export function connect<T extends PropTypes>(
   send: Send,
   normalize: NormalizeProps<T>,
 ): MachineApi<T> {
-  const isHorizontal = state.context.isHorizontal;
-  const width = isHorizontal ? state.context.width : '100%';
-  const height = isHorizontal ? '100%' : state.context.height;
+  const width = state.context.width;
+  const height = state.context.height;
+  const track = state.context.track;
+  const thumb = state.context.thumb;
+  const trackWidth = track?.size[0];
+  const trackHeight = track?.size[1];
+  const thumbWidth = thumb?.size[0];
+  const thumbHeight = thumb?.size[1];
+  const contentWidth = '100%';
+  const contentHeight = '100%';
 
   return {
     rootProps: normalize.element({
-      ...parts.root.attrs,
-      'data-orientation': state.context.orientation,
       id: dom.getRootId(state.context),
       dir: state.context.dir,
+      ...parts.root.attrs,
+      'data-orientation': state.context.orientation,
       style: {
         width,
         height,
       },
     }),
-    trackProps: normalize.element({
+    contentProps: normalize.element({
+      id: dom.getContentId(state.context),
       dir: state.context.dir,
-      id: dom.getTrackId(state.context),
-      ...parts.track.attrs,
+      ...parts.content.attrs,
       style: {
-        display: 'flex',
-        flexDirection: isHorizontal ? 'row' : 'column',
-        width: isHorizontal ? '100%' : '5px',
-        height: isHorizontal ? '5px' : '100%',
+        width: contentWidth,
+        height: contentHeight,
+        overflow: 'hidden',
       },
     }),
-    thumbProps: normalize.element({
+    xTrackProps: normalize.element({
+      id: dom.getXTrackId(state.context),
       dir: state.context.dir,
-      id: dom.getThumbId(state.context),
+      ...parts.track.attrs,
+      style: {
+        width: '100%',
+        height: trackHeight,
+      },
+    }),
+    xThumbProps: normalize.element({
+      id: dom.getXThumbId(state.context),
+      dir: state.context.dir,
       ...parts.thumb.attrs,
+      style: {
+        width: '100%',
+        height: thumbHeight,
+      },
+    }),
+    yTrackProps: normalize.element({
+      id: dom.getYTrackId(state.context),
+      dir: state.context.dir,
+      ...parts.track.attrs,
+      style: {
+        width: trackWidth,
+        height: '100%',
+      },
+    }),
+    yThumbProps: normalize.element({
+      id: dom.getYThumbId(state.context),
+      dir: state.context.dir,
+      ...parts.thumb.attrs,
+      style: {
+        width: thumbWidth,
+        height: '100%',
+      },
     }),
   };
 }

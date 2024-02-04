@@ -1,4 +1,4 @@
-# @cf/style
+# @cf/ui/style
 
 ## Structure
 
@@ -17,8 +17,8 @@
 
 ### import init style
 
-`import '@cf/style/index.css'`
+`import '@cf/ui/style/index.css'`
 
 ### import theme style
 
-`import '@cf/style/theme/index.css'`
+`import '@cf/ui/style/theme/index.css'`

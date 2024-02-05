@@ -10,12 +10,6 @@ export function connect<T extends PropTypes>(
 ): MachineApi<T> {
   const width = state.context.width;
   const height = state.context.height;
-  const track = state.context.track;
-  const thumb = state.context.thumb;
-  const trackWidth = track?.size[0];
-  const trackHeight = track?.size[1];
-  const thumbWidth = thumb?.size[0];
-  const thumbHeight = thumb?.size[1];
   const contentWidth = '100%';
   const contentHeight = '100%';
 
@@ -38,42 +32,59 @@ export function connect<T extends PropTypes>(
         width: contentWidth,
         height: contentHeight,
         overflow: 'hidden',
+        position: 'relative',
       },
     }),
     xTrackProps: normalize.element({
       id: dom.getXTrackId(state.context),
       dir: state.context.dir,
-      ...parts.track.attrs,
+      ...parts.xTrack.attrs,
       style: {
         width: '100%',
-        height: trackHeight,
+        height: '5px',
+        backgroundColor: 'var(--cf-scrollbar-track-bg)',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
       },
     }),
     xThumbProps: normalize.element({
       id: dom.getXThumbId(state.context),
       dir: state.context.dir,
-      ...parts.thumb.attrs,
+      ...parts.xThumb.attrs,
       style: {
         width: '100%',
-        height: thumbHeight,
+        height: '5px',
+        backgroundColor: 'var(--cf-scrollbar-thumb-bg)',
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
       },
     }),
     yTrackProps: normalize.element({
       id: dom.getYTrackId(state.context),
       dir: state.context.dir,
-      ...parts.track.attrs,
+      ...parts.yTrack.attrs,
       style: {
-        width: trackWidth,
+        width: '5px',
         height: '100%',
+        backgroundColor: 'var(--cf-scrollbar-track-bg)',
+        position: 'absolute',
+        top: 0,
+        right: 0,
       },
     }),
     yThumbProps: normalize.element({
       id: dom.getYThumbId(state.context),
       dir: state.context.dir,
-      ...parts.thumb.attrs,
+      ...parts.yThumb.attrs,
       style: {
-        width: thumbWidth,
+        width: '5px',
         height: '100%',
+        backgroundColor: 'var(--cf-scrollbar-thumb-bg)',
+        position: 'absolute',
+        top: 0,
+        right: 0,
       },
     }),
   };

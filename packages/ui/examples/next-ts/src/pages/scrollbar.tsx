@@ -19,6 +19,9 @@ export const Page = () => {
           <div>555</div>
           <div>666</div>
           <div>777</div>
+          <div {...api.xTrackProps}>
+            <div {...api.xThumbProps}></div>
+          </div>
           <div {...api.yTrackProps}>
             <div {...api.yThumbProps}></div>
           </div>

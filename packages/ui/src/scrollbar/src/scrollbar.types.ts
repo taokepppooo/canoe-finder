@@ -10,8 +10,10 @@ import type {
 export type ElementIds = Partial<{
   root: string;
   content: string;
-  track: string;
-  thumb: string;
+  xTrack: string;
+  xThumb: string;
+  yTrack: string;
+  yThumb: string;
 }>;
 
 interface TrackState {

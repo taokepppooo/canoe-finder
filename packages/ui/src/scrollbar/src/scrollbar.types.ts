@@ -16,22 +16,30 @@ export type ElementIds = Partial<{
   yThumb: string;
 }>;
 
-interface TrackState {
-  size?: Array<string | number>;
+interface XThumbState {
+  width?: string | number;
+  show?: boolean;
+  hover?: boolean;
+  hasScroll?: boolean;
+  offset?: number | string;
 }
-interface ThumbState {
-  size?: Array<string | number>;
+interface YThumbState {
+  height?: string | number;
+  show?: boolean;
+  hover?: boolean;
+  hasScroll?: boolean;
+  offset?: number | string;
 }
 
 interface PublicContext extends DirectionProperty, CommonProperties {
   orientation?: 'horizontal' | 'vertical';
   width?: string | number;
   height?: string | number;
-  track?: TrackState;
-  thumb?: ThumbState;
+  scrollWidth?: number;
+  scrollHeight?: number;
+  xThumb?: XThumbState;
+  yThumb?: YThumbState;
   top?: number;
-  right?: number;
-  bottom?: number;
   left?: number;
   ids?: ElementIds;
 }
@@ -40,14 +48,12 @@ export type UserDefinedContext = RequiredBy<PublicContext, 'id'>;
 
 type PrivateContext = Context<object>;
 
-type ComputedContext = Readonly<{
-  isHorizontal: boolean;
-}>;
+type ComputedContext = Readonly<object>;
 
 export interface MachineContext extends PublicContext, PrivateContext, ComputedContext {}
 
 export interface MachineState {
-  value: 'idle' | 'scroll' | 'hover';
+  value: 'idle' | 'focused' | 'scroll-hover';
 }
 
 export type State = S.State<MachineContext, MachineState>;

@@ -12,79 +12,123 @@ export function connect<T extends PropTypes>(
   const height = state.context.height;
   const contentWidth = '100%';
   const contentHeight = '100%';
+  const isShowXScroll = state.context?.xThumb?.show;
+  const isShowYScroll = state.context?.yThumb?.show;
+  const xThumbHover = state.context?.xThumb?.hover;
+  const yThumbHover = state.context?.yThumb?.hover;
+  const xThumbWidth = state.context?.xThumb?.width;
+  const yThumbHeight = state.context?.yThumb?.height;
+  const xThumbOffset = state.context?.xThumb?.offset;
+  const yThumbOffset = state.context?.yThumb?.offset;
 
   return {
     rootProps: normalize.element({
+      ...parts.root.attrs,
       id: dom.getRootId(state.context),
       dir: state.context.dir,
-      ...parts.root.attrs,
-      'data-orientation': state.context.orientation,
       style: {
+        position: 'relative',
         width,
         height,
       },
     }),
     contentProps: normalize.element({
+      ...parts.content.attrs,
       id: dom.getContentId(state.context),
       dir: state.context.dir,
-      ...parts.content.attrs,
       style: {
+        overflow: 'auto',
+        'scrollbar-width': 'none',
+        '-ms-overflow-style': 'none',
         width: contentWidth,
         height: contentHeight,
-        overflow: 'hidden',
-        position: 'relative',
+      },
+      onMouseEnter: () => {
+        send('CONTENT_MOUSE_ENTER');
+      },
+      onMouseLeave: () => {
+        send('CONTENT_MOUSE_LEAVE');
+      },
+      onScroll: () => {
+        send('CONTENT_SCROLL');
       },
     }),
     xTrackProps: normalize.element({
+      ...parts.xTrack.attrs,
       id: dom.getXTrackId(state.context),
       dir: state.context.dir,
-      ...parts.xTrack.attrs,
+      'data-orientation': 'horizontal',
       style: {
-        width: '100%',
-        height: '5px',
-        backgroundColor: 'var(--cf-scrollbar-track-bg)',
         position: 'absolute',
         left: 0,
         bottom: 0,
+        display: isShowXScroll ? 'block' : 'none',
+        width: '100%',
+        height: '5px',
+        backgroundColor: 'var(--cf-scrollbar-track-bg)',
       },
     }),
     xThumbProps: normalize.element({
+      ...parts.xThumb.attrs,
       id: dom.getXThumbId(state.context),
       dir: state.context.dir,
-      ...parts.xThumb.attrs,
+      'data-orientation': 'horizontal',
       style: {
-        width: '100%',
-        height: '5px',
-        backgroundColor: 'var(--cf-scrollbar-thumb-bg)',
         position: 'absolute',
         left: 0,
         bottom: 0,
+        display: isShowXScroll ? 'block' : 'none',
+        width: xThumbWidth,
+        height: '5px',
+        backgroundColor: xThumbHover
+          ? 'var(--cf-scrollbar-thumb-hover-bg)'
+          : 'var(--cf-scrollbar-thumb-bg)',
+        transform: `translateX(${xThumbOffset}%)`,
+      },
+      onMouseEnter: () => {
+        send('X_THUMB_MOUSE_ENTER');
+      },
+      onMouseLeave: () => {
+        send('X_THUMB_MOUSE_LEAVE');
       },
     }),
     yTrackProps: normalize.element({
+      ...parts.yTrack.attrs,
       id: dom.getYTrackId(state.context),
       dir: state.context.dir,
-      ...parts.yTrack.attrs,
+      'data-orientation': 'vertical',
       style: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        display: isShowYScroll ? 'block' : 'none',
         width: '5px',
         height: '100%',
         backgroundColor: 'var(--cf-scrollbar-track-bg)',
-        position: 'absolute',
-        top: 0,
-        right: 0,
       },
     }),
     yThumbProps: normalize.element({
+      ...parts.yThumb.attrs,
       id: dom.getYThumbId(state.context),
       dir: state.context.dir,
-      ...parts.yThumb.attrs,
+      'data-orientation': 'vertical',
       style: {
-        width: '5px',
-        height: '100%',
-        backgroundColor: 'var(--cf-scrollbar-thumb-bg)',
         position: 'absolute',
         top: 0,
         right: 0,
+        display: isShowYScroll ? 'block' : 'none',
+        width: '5px',
+        height: yThumbHeight,
+        backgroundColor: yThumbHover
+          ? 'var(--cf-scrollbar-thumb-hover-bg)'
+          : 'var(--cf-scrollbar-thumb-bg)',
+        transform: `translateY(${yThumbOffset}%)`,
+      },
+      onMouseEnter: () => {
+        send('Y_THUMB_MOUSE_ENTER');
+      },
+      onMouseLeave: () => {
+        send('Y_THUMB_MOUSE_LEAVE');
       },
     }),
   };

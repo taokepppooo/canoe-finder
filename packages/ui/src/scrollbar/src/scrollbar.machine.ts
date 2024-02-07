@@ -72,11 +72,17 @@ export function machine(userContext: UserDefinedContext) {
               target: 'focused',
               actions: ['invokeYThumbMouseLeave'],
             },
-            SCROLL_HORIZONTAL: {
-              actions: ['invokeHorizontalScroll'],
+            Y_THUMB_MOUSE_DOWN: {
+              target: 'scroll-drag',
+              actions: ['invokeDragVerticalScroll'],
             },
-            SCROLL_VERTICAL: {
-              actions: ['invokeVerticalScroll'],
+          },
+        },
+        'scroll-drag': {
+          on: {
+            Y_THUMB_DRAG_MOUSE_LEAVE: {
+              target: 'focused',
+              actions: ['invokeYThumbMouseLeave'],
             },
           },
         },
@@ -85,6 +91,7 @@ export function machine(userContext: UserDefinedContext) {
     {
       activities: {
         setInitialSize(ctx) {
+          // const win = dom.getWin(ctx);
           const contentEl = dom.getContentEl(ctx);
           ctx.width = contentEl.clientWidth;
           ctx.height = contentEl.clientHeight;
@@ -93,18 +100,16 @@ export function machine(userContext: UserDefinedContext) {
 
           if (ctx.scrollWidth > ctx.width) {
             ctx.xThumb.hasScroll = true;
-            const SCROLL_WIDTH = 10;
 
             const xThumbWidthPercent = (ctx.width / ctx.scrollWidth) * 100;
-            const scrollWidth = `calc(${xThumbWidthPercent}% + ${SCROLL_WIDTH}px)`;
+            const scrollWidth = `${xThumbWidthPercent}%`;
             ctx.xThumb.width = scrollWidth;
           }
           if (ctx.scrollHeight > ctx.height) {
             ctx.yThumb.hasScroll = true;
-            const SCROLL_HEIGHT = 10;
 
             const yThumbHeightPercent = (ctx.height / ctx.scrollHeight) * 100;
-            const scrollHeight = `calc(${yThumbHeightPercent}% + ${SCROLL_HEIGHT}px)`;
+            const scrollHeight = `${yThumbHeightPercent}%`;
             ctx.yThumb.height = scrollHeight;
           }
         },
@@ -128,12 +133,29 @@ export function machine(userContext: UserDefinedContext) {
         invokeVerticalScroll(ctx) {
           invoke.invokeVerticalScroll(ctx);
         },
+        invokeDragVerticalScroll(ctx, _evt, { send }) {
+          const win = dom.getWin(ctx);
+          win.addEventListener('mouseover', (e) => {
+            invoke.invokeDragVerticalScroll(ctx, e);
+          });
+          win.addEventListener('mouseup', (e) => {
+            invoke.invokeDragVerticalScrollStop(ctx, e, send);
+          });
+        },
+        invokeDragVerticalScrollStop(ctx, _evt, { send }) {
+          const win = dom.getWin(ctx);
+          win.removeEventListener('mouseover', (e) => {
+            invoke.invokeDragVerticalScroll(ctx, e);
+          });
+          win.removeEventListener('mouseup', (e) => {
+            invoke.invokeDragVerticalScrollStop(ctx, e, send);
+          });
+        },
         invokeHorizontalScroll(ctx) {
-          if (ctx.xThumb.hasScroll) {
-            const contentEl = dom.getContentEl(ctx);
-            ctx.left = contentEl.scrollLeft;
-            ctx.xThumb.offset = (ctx.left / ctx.scrollWidth) * 100;
-          }
+          const contentEl = dom.getContentEl(ctx);
+          ctx.left = contentEl.scrollLeft;
+
+          ctx.xThumb.offset = (ctx.left / contentEl.clientWidth) * 100;
         },
         invokeXThumbMouseEnter(ctx) {
           ctx.xThumb.hover = true;
@@ -154,10 +176,15 @@ export function machine(userContext: UserDefinedContext) {
 
 const invoke = {
   invokeVerticalScroll: (ctx) => {
-    if (ctx.yThumb.hasScroll) {
-      const contentEl = dom.getContentEl(ctx);
-      ctx.top = contentEl.scrollTop;
-      ctx.yThumb.offset = (ctx.top / ctx.scrollHeight) * 100;
-    }
+    const contentEl = dom.getContentEl(ctx);
+    ctx.top = contentEl.scrollTop;
+
+    ctx.yThumb.offset = (ctx.top / contentEl.clientHeight) * 100;
+  },
+  invokeDragVerticalScroll: (ctx, e) => {
+    requestAnimationFrame(() => {});
+  },
+  invokeDragVerticalScrollStop: (ctx, e, send) => {
+    send('Y_THUMB_DRAG_MOUSE_LEAVE');
   },
 };

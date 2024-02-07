@@ -9,7 +9,10 @@ export const dom = createScope({
   getYTrackId: (ctx: Ctx) => ctx.ids?.yTrack ?? `scrollbar:${ctx.id}:y-track`,
   getYThumbId: (ctx: Ctx) => ctx.ids?.yThumb ?? `scrollbar:${ctx.id}:y-thumb`,
 
+  getRootEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getRootId(ctx)),
   getContentEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getContentId(ctx)),
   getXTrackEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getXTrackId(ctx)),
   getYTrackEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getYTrackId(ctx)),
+  getXThumbEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getXThumbId(ctx)),
+  getYThumbEl: (ctx: Ctx) => dom.getById<HTMLDivElement>(ctx, dom.getYThumbId(ctx)),
 });

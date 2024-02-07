@@ -53,7 +53,7 @@ type ComputedContext = Readonly<object>;
 export interface MachineContext extends PublicContext, PrivateContext, ComputedContext {}
 
 export interface MachineState {
-  value: 'idle' | 'focused' | 'scroll-hover';
+  value: 'idle' | 'focused' | 'scroll-hover' | 'scroll-drag';
 }
 
 export type State = S.State<MachineContext, MachineState>;

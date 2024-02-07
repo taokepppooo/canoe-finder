@@ -38,8 +38,8 @@ export function connect<T extends PropTypes>(
       dir: state.context.dir,
       style: {
         overflow: 'auto',
-        'scrollbar-width': 'none',
-        '-ms-overflow-style': 'none',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
         width: contentWidth,
         height: contentHeight,
       },
@@ -50,7 +50,9 @@ export function connect<T extends PropTypes>(
         send('CONTENT_MOUSE_LEAVE');
       },
       onScroll: () => {
-        send('CONTENT_SCROLL');
+        requestAnimationFrame(() => {
+          send('CONTENT_SCROLL');
+        });
       },
     }),
     xTrackProps: normalize.element({
@@ -126,6 +128,10 @@ export function connect<T extends PropTypes>(
       },
       onMouseEnter: () => {
         send('Y_THUMB_MOUSE_ENTER');
+      },
+      onMouseDown: (e) => {
+        e.preventDefault();
+        send('Y_THUMB_MOUSE_DOWN');
       },
       onMouseLeave: () => {
         send('Y_THUMB_MOUSE_LEAVE');

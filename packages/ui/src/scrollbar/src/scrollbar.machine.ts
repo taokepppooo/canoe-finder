@@ -182,7 +182,20 @@ const invoke = {
     ctx.yThumb.offset = (ctx.top / contentEl.clientHeight) * 100;
   },
   invokeDragVerticalScroll: (ctx, e) => {
-    requestAnimationFrame(() => {});
+    requestAnimationFrame(() => {
+      const clientY = e.clientY;
+      const contentEl = dom.getContentEl(ctx);
+      const yThumbEl = dom.getYThumbEl(ctx);
+
+      const maxOffset = (yThumbEl.clientHeight / contentEl.scrollHeight) * 100;
+      const maxOffsetClientY = contentEl.clientHeight - yThumbEl.clientHeight;
+
+      console.log(clientY, 'clientY');
+      const offset = (clientY / contentEl.clientHeight) * 100;
+      if (offset < 0 || offset > maxOffset) return;
+
+      ctx.yThumb.offset = offset;
+    });
   },
   invokeDragVerticalScrollStop: (ctx, e, send) => {
     send('Y_THUMB_DRAG_MOUSE_LEAVE');

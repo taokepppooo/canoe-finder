@@ -24,6 +24,7 @@ export function machine(userContext: UserDefinedContext) {
           height: 0,
           hasScroll: false,
           offset: 0,
+          dragging: false,
         },
         top: 0,
         left: 0,
@@ -134,21 +135,14 @@ export function machine(userContext: UserDefinedContext) {
           invoke.invokeVerticalScroll(ctx);
         },
         invokeDragVerticalScroll(ctx, _evt, { send }) {
-          const win = dom.getWin(ctx);
-          win.addEventListener('mouseover', (e) => {
-            invoke.invokeDragVerticalScroll(ctx, e);
-          });
-          win.addEventListener('mouseup', (e) => {
-            invoke.invokeDragVerticalScrollStop(ctx, e, send);
-          });
+          ctx.yThumb.dragging = true;
+          invoke.invokeDragVerticalScroll(ctx, _evt, send);
         },
         invokeDragVerticalScrollStop(ctx, _evt, { send }) {
           const win = dom.getWin(ctx);
-          win.removeEventListener('mouseover', (e) => {
-            invoke.invokeDragVerticalScroll(ctx, e);
-          });
-          win.removeEventListener('mouseup', (e) => {
-            invoke.invokeDragVerticalScrollStop(ctx, e, send);
+          ctx.yThumb.dragging = false;
+          win.document.removeEventListener('mouseover', (e) => {
+            invoke.invokeDragVerticalScroll(ctx, e, send);
           });
         },
         invokeHorizontalScroll(ctx) {
@@ -181,23 +175,40 @@ const invoke = {
 
     ctx.yThumb.offset = (ctx.top / contentEl.clientHeight) * 100;
   },
-  invokeDragVerticalScroll: (ctx, e) => {
-    requestAnimationFrame(() => {
-      const clientY = e.clientY;
-      const contentEl = dom.getContentEl(ctx);
-      const yThumbEl = dom.getYThumbEl(ctx);
+  invokeDragVerticalScroll: (ctx, e, send) => {
+    if (!ctx.yThumb.dragging) return;
 
-      const maxOffset = (yThumbEl.clientHeight / contentEl.scrollHeight) * 100;
-      const maxOffsetClientY = contentEl.clientHeight - yThumbEl.clientHeight;
+    // 更改为使用 mousemove 事件监听器
+    const moveHandler = (e) => {
+      requestAnimationFrame(() => {
+        const clientY = e.clientY;
+        const contentEl = dom.getContentEl(ctx);
+        const yThumbEl = dom.getYThumbEl(ctx);
 
-      console.log(clientY, 'clientY');
-      const offset = (clientY / contentEl.clientHeight) * 100;
-      if (offset < 0 || offset > maxOffset) return;
+        const maxOffset = (yThumbEl.clientHeight / contentEl.scrollHeight) * 100;
+        const maxOffsetClientY = contentEl.clientHeight - yThumbEl.clientHeight;
 
-      ctx.yThumb.offset = offset;
-    });
+        console.log(clientY, 'clientY');
+        const offset = (clientY / contentEl.clientHeight) * 100;
+        if (offset < 0 || offset > maxOffset) return;
+
+        ctx.yThumb.offset = offset;
+      });
+    };
+
+    const upHandler = (e) => {
+      ctx.yThumb.dragging = false;
+      const win = dom.getWin(ctx);
+      win.document.removeEventListener('mousemove', moveHandler);
+      win.document.removeEventListener('mouseup', upHandler);
+      invoke.invokeDragVerticalScrollStop(ctx, e, send);
+    };
+
+    const win = dom.getWin(ctx);
+    win.document.addEventListener('mousemove', moveHandler);
+    win.document.addEventListener('mouseup', upHandler);
   },
-  invokeDragVerticalScrollStop: (ctx, e, send) => {
+  invokeDragVerticalScrollStop: (__ctx, __e, send) => {
     send('Y_THUMB_DRAG_MOUSE_LEAVE');
   },
 };

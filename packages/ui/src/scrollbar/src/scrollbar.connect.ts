@@ -85,10 +85,14 @@ export function connect<T extends PropTypes>(
         backgroundColor: xThumbHover
           ? 'var(--cf-scrollbar-thumb-hover-bg)'
           : 'var(--cf-scrollbar-thumb-bg)',
-        transform: `translateX(${xThumbOffset}%)`,
+        transform: `translateX(${xThumbOffset})`,
       },
       onMouseEnter: () => {
         send('X_THUMB_MOUSE_ENTER');
+      },
+      onMouseDown: (e) => {
+        e.preventDefault();
+        send('X_THUMB_MOUSE_DOWN');
       },
       onMouseLeave: () => {
         send('X_THUMB_MOUSE_LEAVE');
@@ -124,7 +128,7 @@ export function connect<T extends PropTypes>(
         backgroundColor: yThumbHover
           ? 'var(--cf-scrollbar-thumb-hover-bg)'
           : 'var(--cf-scrollbar-thumb-bg)',
-        transform: `translateY(${yThumbOffset}%)`,
+        transform: `translateY(${yThumbOffset})`,
       },
       onMouseEnter: () => {
         send('Y_THUMB_MOUSE_ENTER');

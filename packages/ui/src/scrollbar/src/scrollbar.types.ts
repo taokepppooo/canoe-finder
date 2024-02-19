@@ -22,6 +22,7 @@ interface XThumbState {
   hover?: boolean;
   hasScroll?: boolean;
   offset?: number | string;
+  dragging?: boolean;
 }
 interface YThumbState {
   height?: string | number;
@@ -29,6 +30,7 @@ interface YThumbState {
   hover?: boolean;
   hasScroll?: boolean;
   offset?: number | string;
+  dragging?: boolean;
 }
 
 interface PublicContext extends DirectionProperty, CommonProperties {

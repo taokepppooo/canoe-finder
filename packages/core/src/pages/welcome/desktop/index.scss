@@ -1,0 +1,30 @@
+.grid-template {
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+.swiper-horizontal {
+  & > .swiper-pagination-bullets .swiper-pagination-bullet,
+  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0 1.2rem;
+  }
+}
+.swiper {
+  .swiper-pagination {
+    $bullet-width: 2rem;
+    $bullet-height: 2rem;
+
+    .swiper-pagination-bullet {
+      width: $bullet-width;
+      height: $bullet-height;
+      opacity: .5;
+      background-color: var(--cf-carousel-bullet-bg);
+    }
+
+    .swiper-pagination-bullet-active {
+      width: $bullet-width;
+      height: $bullet-height;
+      opacity: .8;
+      background: var(--cf-carousel-bullet-bg-hover);
+    }
+  }
+}

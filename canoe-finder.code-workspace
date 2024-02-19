@@ -4,7 +4,13 @@
       "path": "."
     },
     {
-      "path": "packages/cf-main"
+      "path": "packages/core"
+    },
+    {
+      "path": "packages/style"
+    },
+    {
+      "path": "packages/ui"
     }
   ]
 }

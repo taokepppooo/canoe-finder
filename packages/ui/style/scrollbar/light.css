@@ -1,5 +1,5 @@
 .cf-light-theme, .cf-light-scrollbar {
   --cf-scrollbar-track-bg: #faf6f6;
   --cf-scrollbar-thumb-bg: #cfcfcf;
-  --cf-scrollbar-thumb-hover-bg: red;
+  --cf-scrollbar-thumb-hover-bg: #909399;
 }

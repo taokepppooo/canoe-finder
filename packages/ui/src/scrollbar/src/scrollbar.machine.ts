@@ -189,112 +189,86 @@ export function machine(userContext: UserDefinedContext) {
   );
 }
 
-const invoke = {
-  invokeVerticalScroll: (ctx) => {
-    const contentEl = dom.getContentEl(ctx);
-    ctx.top = contentEl.scrollTop;
+const invokeScroll = (ctx, orientation) => {
+  const contentEl = dom.getContentEl(ctx);
 
-    ctx.yThumb.offset = `${(ctx.top / contentEl.clientHeight) * 100}%`;
-  },
-  invokeHorizontalScroll: (ctx) => {
-    const contentEl = dom.getContentEl(ctx);
-    ctx.left = contentEl.scrollLeft;
+  const isVertical = orientation === 'vertical';
+  const position = isVertical ? ctx.top : ctx.left;
+  const scroll = isVertical ? 'scrollTop' : 'scrollLeft';
+  const thumb = isVertical ? ctx.yThumb : ctx.xThumb;
+  const client = isVertical ? 'clientHeight' : 'clientWidth';
 
-    ctx.xThumb.offset = `${(ctx.left / contentEl.clientWidth) * 100}%`;
-  },
-  invokeDragVerticalScroll: (ctx, __evt, send) => {
-    if (!ctx.yThumb.dragging) return;
+  ctx[position] = contentEl[scroll];
+  thumb.offset = `${(ctx[position] / contentEl[client]) * 100}%`;
+};
 
-    let moveFlag = true;
-    let clientYOffsetYThumbTop = 0;
-    let offset = 0;
+const invokeDragScroll = (ctx, orientation, evt, send) => {
+  const isVertical = orientation === 'vertical';
+  const thumb = isVertical ? ctx.yThumb : ctx.xThumb;
+
+  if (!thumb.dragging) return;
+
+  let moveFlag = true;
+  let clientOffsetThumbPosition = 0;
+  let offset = 0;
+  const win = dom.getWin(ctx);
+  const contentEl = dom.getContentEl(ctx);
+  const trackEl = isVertical ? dom.getYTrackEl(ctx) : dom.getXTrackEl(ctx);
+  const thumbEl = isVertical ? dom.getYThumbEl(ctx) : dom.getXThumbEl(ctx);
+  const tackOffsetClient = trackEl.getBoundingClientRect()[isVertical ? 'top' : 'left'];
+  const tackSize = trackEl[isVertical ? 'clientHeight' : 'clientWidth'];
+  const thumbSize = thumbEl[isVertical ? 'clientHeight' : 'clientWidth'];
+  const maxOffset = tackSize - thumbSize;
+
+  const moveHandler = (e) => {
+    const client = isVertical ? e.clientY : e.clientX;
+
+    if (moveFlag) {
+      clientOffsetThumbPosition =
+        client - thumbEl.getBoundingClientRect()[isVertical ? 'top' : 'left'];
+      moveFlag = false;
+    }
+
+    if (client > tackOffsetClient + maxOffset + clientOffsetThumbPosition) {
+      offset = maxOffset;
+    } else if (client < 0) {
+      offset = 0;
+    } else {
+      offset = client - tackOffsetClient - clientOffsetThumbPosition;
+    }
+
+    if (offset < 0 || offset > maxOffset) return;
+
+    thumb.offset = `${offset}px`;
+    contentEl[isVertical ? 'scrollTop' : 'scrollLeft'] =
+      (offset / tackSize) * (isVertical ? ctx.scrollHeight : ctx.scrollWidth);
+  };
+
+  const upHandler = (e) => {
+    thumb.dragging = false;
     const win = dom.getWin(ctx);
-    const contentEl = dom.getContentEl(ctx);
-    const yTrackEl = dom.getYTrackEl(ctx);
-    const yThumbEl = dom.getYThumbEl(ctx);
-    const yTackOffsetClientTop = yTrackEl.getBoundingClientRect().top;
-    const yTackHeight = yTrackEl.clientHeight;
-    const yThumbHeight = yThumbEl.clientHeight;
-    const maxOffset = yTackHeight - yThumbHeight;
+    win.document.removeEventListener('mousemove', moveHandler);
+    win.document.removeEventListener('mouseup', upHandler);
 
-    const moveHandler = (e) => {
-      const clientY = e.clientY;
-      if (moveFlag) {
-        clientYOffsetYThumbTop = clientY - yThumbEl.getBoundingClientRect().top;
-        moveFlag = false;
-      }
-
-      if (clientY > yTackOffsetClientTop + maxOffset + clientYOffsetYThumbTop) {
-        offset = maxOffset;
-      } else if (clientY < 0) {
-        offset = 0;
-      } else {
-        offset = clientY - yTackOffsetClientTop - clientYOffsetYThumbTop;
-      }
-
-      if (offset < 0 || offset > maxOffset) return;
-
-      ctx.yThumb.offset = `${offset}px`;
-      contentEl.scrollTop = (offset / yTackHeight) * ctx.scrollHeight;
-    };
-
-    const upHandler = (e) => {
-      ctx.yThumb.dragging = false;
-      const win = dom.getWin(ctx);
-      win.document.removeEventListener('mousemove', moveHandler);
-      win.document.removeEventListener('mouseup', upHandler);
+    if (isVertical) {
       invoke.invokeDragVerticalScrollStop(ctx, e, send);
-    };
+    } else {
+      invoke.invokeDragHorizontalScrollStop(ctx, e, send);
+    }
+  };
 
-    win.document.addEventListener('mousemove', moveHandler);
-    win.document.addEventListener('mouseup', upHandler);
+  win.document.addEventListener('mousemove', moveHandler);
+  win.document.addEventListener('mouseup', upHandler);
+};
+
+const invoke = {
+  invokeVerticalScroll: (ctx) => invokeScroll(ctx, 'vertical'),
+  invokeHorizontalScroll: (ctx) => invokeScroll(ctx, 'horizontal'),
+  invokeDragVerticalScroll: (ctx, __evt, send) => {
+    invokeDragScroll(ctx, 'vertical', __evt, send);
   },
   invokeDragHorizontalScroll: (ctx, __evt, send) => {
-    if (!ctx.xThumb.dragging) return;
-
-    let moveFlag = true;
-    let clientXOffsetXThumbLeft = 0;
-    let offset = 0;
-    const win = dom.getWin(ctx);
-    const contentEl = dom.getContentEl(ctx);
-    const xTrackEl = dom.getXTrackEl(ctx);
-    const xThumbEl = dom.getXThumbEl(ctx);
-    const xTackOffsetClientLeft = xTrackEl.getBoundingClientRect().left;
-    const xTackWidth = xTrackEl.clientWidth;
-    const xThumbWidth = xThumbEl.clientWidth;
-    const maxOffset = xTackWidth - xThumbWidth;
-
-    const moveHandler = (e) => {
-      const clientX = e.clientX;
-      if (moveFlag) {
-        clientXOffsetXThumbLeft = clientX - xThumbEl.getBoundingClientRect().left;
-        moveFlag = false;
-      }
-
-      if (clientX > xTackOffsetClientLeft + maxOffset + clientXOffsetXThumbLeft) {
-        offset = maxOffset;
-      } else if (clientX < 0) {
-        offset = 0;
-      } else {
-        offset = clientX - xTackOffsetClientLeft - clientXOffsetXThumbLeft;
-      }
-
-      if (offset < 0 || offset > maxOffset) return;
-
-      ctx.xThumb.offset = `${offset}px`;
-      contentEl.scrollLeft = (offset / xTackWidth) * ctx.scrollWidth;
-    };
-
-    const upHandler = (e) => {
-      ctx.xThumb.dragging = false;
-      const win = dom.getWin(ctx);
-      win.document.removeEventListener('mousemove', moveHandler);
-      win.document.removeEventListener('mouseup', upHandler);
-      invoke.invokeDragHorizontalScrollStop(ctx, e, send);
-    };
-
-    win.document.addEventListener('mousemove', moveHandler);
-    win.document.addEventListener('mouseup', upHandler);
+    invokeDragScroll(ctx, 'horizontal', __evt, send);
   },
   invokeDragVerticalScrollStop: (__ctx, __evt, send) => {
     send('Y_THUMB_DRAG_MOUSE_LEAVE');

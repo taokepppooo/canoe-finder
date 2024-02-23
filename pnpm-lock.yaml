@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@zag-js/store': ^0.36.3
+
 importers:
 
   .:
@@ -17,6 +20,12 @@ importers:
       '@cf/ui':
         specifier: file:../ui
         version: file:packages/ui
+      '@zag-js/menu':
+        specifier: ^0.36.3
+        version: 0.36.3
+      '@zag-js/react':
+        specifier: ^0.36.3
+        version: 0.36.3(react-dom@18.2.0)(react@18.2.0)
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
@@ -100,23 +109,23 @@ importers:
   packages/ui:
     dependencies:
       '@zag-js/anatomy':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/core':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/dom-query':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/mutation-observer':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/types':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/utils':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.36.3
+        version: 0.36.3
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.20.0
@@ -148,9 +157,12 @@ importers:
 
   packages/ui/examples/next-ts:
     dependencies:
+      '@zag-js/menu':
+        specifier: ^0.36.3
+        version: 0.36.3
       '@zag-js/react':
-        specifier: ^0.34.0
-        version: 0.34.0(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.36.3
+        version: 0.36.3(react-dom@18.2.0)(react@18.2.0)
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -190,7 +202,7 @@ importers:
         version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.2.5)
       ts-loader:
         specifier: ^9.5.1
-        version: 9.5.1(typescript@5.3.3)(webpack@5.90.2)
+        version: 9.5.1(typescript@5.3.3)(webpack@5.90.3)
       typescript:
         specifier: ^5
         version: 5.3.3
@@ -803,6 +815,23 @@ packages:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@floating-ui/core@1.6.0:
+    resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
+    dependencies:
+      '@floating-ui/utils': 0.2.1
+    dev: false
+
+  /@floating-ui/dom@1.6.2:
+    resolution: {integrity: sha512-xymkSSowKdGqo0SRr2Mp4czH5A8o2Pum35PAD0ftb3gCcPacWzwhvtUeUqmVXm9EVtm2hThD/lRrFNcahMOaSQ==}
+    dependencies:
+      '@floating-ui/core': 1.6.0
+      '@floating-ui/utils': 0.2.1
+    dev: false
+
+  /@floating-ui/utils@0.2.1:
+    resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
@@ -2315,53 +2344,117 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@zag-js/anatomy@0.34.0:
-    resolution: {integrity: sha512-Ohm1xhG5vKUl4ynA4KnO5V2oZ9w63IbVPJ/5CZ5oAToDr9En+aCg+LRzAUQi/Er3kV7VBnQIi0OqE5pog53u5w==}
+  /@zag-js/anatomy@0.36.3:
+    resolution: {integrity: sha512-DPjQ8IZ3ksXUQ44FuduBHmVCJWcJLDRYfZdkFDDFt2ZmpKA9jd8CB8r3ll/grmhUaCNg1aqZpCohreRW+JtA6g==}
     dev: false
 
-  /@zag-js/core@0.34.0:
-    resolution: {integrity: sha512-M3JVZM0TOnkHp6DMCiS1ZliS3l0LXOZ1wsWFpkDmUhywVP917fauazj9TcGNydCN/rF6f6cY5Z0wWsc7jEZ8YA==}
+  /@zag-js/core@0.36.3:
+    resolution: {integrity: sha512-GfoolpOJvT6L4nsvGxZo1Lz3GZrQguE92ZSwIqnVbAbe0LfZVM+NAdp6p1ypvp828sAnxvhtxLp3/xz+kGt9uQ==}
     dependencies:
-      '@zag-js/store': 0.34.0
+      '@zag-js/store': 0.36.3
       klona: 2.0.6
     dev: false
 
-  /@zag-js/dom-query@0.34.0:
-    resolution: {integrity: sha512-cgCzqnCMjlZzVs+Zz+oHx43MpVRjolnHnxpYmGnB1oduSw0pV0XBK1x7S0Tbb+DoIrOQ5gik5zQxlQMOxTA6Kg==}
+  /@zag-js/dismissable@0.36.3:
+    resolution: {integrity: sha512-rnj94Tfhs5uyCYVooedL46h2zSmSOwv+PFxypIdxPJIitugLTO94oS6XNZDtHHlmBrvlntGdEpG+12WCAt5YVA==}
+    dependencies:
+      '@zag-js/dom-event': 0.36.3
+      '@zag-js/dom-query': 0.36.3
+      '@zag-js/interact-outside': 0.36.3
+      '@zag-js/utils': 0.36.3
     dev: false
 
-  /@zag-js/mutation-observer@0.34.0:
-    resolution: {integrity: sha512-bzFpocBD4DDAoKW7IBEz3Kmkg5ADJaLqLwTcGrnup3BI+PGwsnz22uMGPSak5oZs+5C9yU+tpVg59XO8lT1PDw==}
+  /@zag-js/dom-event@0.36.3:
+    resolution: {integrity: sha512-KWDkw8TH2HWrDHJUe7iWjKpMBUaR4xpLKLJMxJ9UV1k8v6V21Ih0gep8Ppfwhma+5qrr+ezkZvLyRrxkA0iEaA==}
+    dependencies:
+      '@zag-js/text-selection': 0.36.3
+      '@zag-js/types': 0.36.3
     dev: false
 
-  /@zag-js/react@0.34.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-2R8GUDa/juNNPb3bRpaeZ4RYX4ZjCpGDZ5I5EBrkS3HgsmYxDteS2wMewo0k/v7hWJTG1JoVOCr+x4SdMxAsMQ==}
+  /@zag-js/dom-query@0.36.3:
+    resolution: {integrity: sha512-ID8bFHFWS2ynOTZ3LiUmnVUllkmVfCw5nEAY14SZHdEa0wTCCubyAiTmuUxtu7QksBg27OsL5+FIezO1pFbsdw==}
+    dev: false
+
+  /@zag-js/interact-outside@0.36.3:
+    resolution: {integrity: sha512-EulTinSRxqvr5zhHauFwtaC05iM7hPbrsh7tLyrIXae8SvuCYPHTtFhaSFN6sMaTbyE+7KPKqGXTd1CWImnRWw==}
+    dependencies:
+      '@zag-js/dom-event': 0.36.3
+      '@zag-js/dom-query': 0.36.3
+      '@zag-js/tabbable': 0.36.3
+      '@zag-js/utils': 0.36.3
+    dev: false
+
+  /@zag-js/menu@0.36.3:
+    resolution: {integrity: sha512-3IjA+Tr7qhua7Aio9qnLxUZZqcIWH/y12yZVx1tXqwip2M3BJexC44lME807TEs857zFv2OCWlEZG00/yLBeuA==}
+    dependencies:
+      '@zag-js/anatomy': 0.36.3
+      '@zag-js/core': 0.36.3
+      '@zag-js/dismissable': 0.36.3
+      '@zag-js/dom-event': 0.36.3
+      '@zag-js/dom-query': 0.36.3
+      '@zag-js/mutation-observer': 0.36.3
+      '@zag-js/popper': 0.36.3
+      '@zag-js/rect-utils': 0.36.3
+      '@zag-js/types': 0.36.3
+      '@zag-js/utils': 0.36.3
+    dev: false
+
+  /@zag-js/mutation-observer@0.36.3:
+    resolution: {integrity: sha512-lqWqPdUimb1v9hPmi5Gl9UPEd/uTLSKwqBggk4MVN9i46e9Fa958ayq0RIk/PqosR10dThMeNzftIOKZ6YI51g==}
+    dev: false
+
+  /@zag-js/popper@0.36.3:
+    resolution: {integrity: sha512-mCd7ABYbYHM4RiWNWumCiN8fQyIDZc+vBQx3BnjIBh/CYZog/xoQolb37JfeE6/3Lk/Z/BwsOl14Sjsv4nkdLQ==}
+    dependencies:
+      '@floating-ui/dom': 1.6.2
+      '@zag-js/dom-query': 0.36.3
+      '@zag-js/utils': 0.36.3
+    dev: false
+
+  /@zag-js/react@0.36.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-eRhIGV7CZbPN+f+etse+S80p7/htYP/0BYwk6Z6De4CKOzgsR0NI/dEQIm86kSCw0q1i9dxRQ3D/rZ8HTyYuRA==}
     peerDependencies:
       react: '>=18.0.0'
       react-dom: '>=18.0.0'
     dependencies:
-      '@zag-js/core': 0.34.0
-      '@zag-js/store': 0.34.0
-      '@zag-js/types': 0.34.0
+      '@zag-js/core': 0.36.3
+      '@zag-js/store': 0.36.3
+      '@zag-js/types': 0.36.3
       proxy-compare: 2.6.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@zag-js/store@0.34.0:
-    resolution: {integrity: sha512-OiWPXZXhZ3d7NsQ42P8cx8gek3mNJ/Qp2GJqR6V+d8BuwzlC5pp4fEcl/XGT7A3Fc7QnDzZIOZepVX4vMQWJbQ==}
+  /@zag-js/rect-utils@0.36.3:
+    resolution: {integrity: sha512-8S/X22QWfJQFsUhezQvqaSrFRHU0xV8x51RQXY7XM4HMGQIPOixh9EJxXIPRqSFH2Ze0brxR61pb9ZquG0Qhjw==}
+    dev: false
+
+  /@zag-js/store@0.36.3:
+    resolution: {integrity: sha512-e3oMEyo/C+fg3n2jTHr0bNSwaS+2S5mZQYqfjPXAOSrFhB0kY0lUEUPUtdaHfjAKmbd8fJiLX2tYTeIQ1DlnBA==}
     dependencies:
       proxy-compare: 2.6.0
     dev: false
 
-  /@zag-js/types@0.34.0:
-    resolution: {integrity: sha512-0AZCS0e+3tDgJdDK110b2SoKWkxUAzmrY5xSZcGdS/mir7Y8AvC6Jjhm5OHoFnqsLmbIKOEb7zclM5vWQwp8yw==}
+  /@zag-js/tabbable@0.36.3:
+    resolution: {integrity: sha512-5hkBPA076a8F15awn2M5MtJZuyktpdxNPQAx/jnNyrVzVm0eydZmVJ7eCEc9X/xR77lIirXnZt1Rkq3nYniOHw==}
+    dependencies:
+      '@zag-js/dom-query': 0.36.3
+    dev: false
+
+  /@zag-js/text-selection@0.36.3:
+    resolution: {integrity: sha512-hnqE3huCgOpcD30+xYiaXa8BDdOmQ2487X4kb1I/sl3gaVwUvzmkNNXzTzovmk9GFYkUcfn72EDBc7A3xV8u1Q==}
+    dependencies:
+      '@zag-js/dom-query': 0.36.3
+    dev: false
+
+  /@zag-js/types@0.36.3:
+    resolution: {integrity: sha512-mCCUFSMBIrdC1hbs/kGjhdfiK+MJY3Ds400qUrbja31nvEKV4wreHLXWGTa/ylKgNTBwjYUZSGklPNQeKam4WQ==}
     dependencies:
       csstype: 3.1.3
     dev: false
 
-  /@zag-js/utils@0.34.0:
-    resolution: {integrity: sha512-I5sgYKi4266Q06qNzHPaHrz3jWi3A6zbsFVe+pI9W2BmDnmJxZKdY/onr9ImdZatXFuzP5n/n/2Ik28YtTbdFQ==}
+  /@zag-js/utils@0.36.3:
+    resolution: {integrity: sha512-dcU52NW9rRxgaWD0y2uSMyJPF8lk90oV5rRD0w5H6sTMuEEzKOL9glaDCKA2wVnRtaKUCKWmWaxeWYIQF0z02w==}
     dev: false
 
   /@zkochan/js-yaml@0.0.6:
@@ -2965,7 +3058,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001588
-      electron-to-chromium: 1.4.673
+      electron-to-chromium: 1.4.675
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: true
@@ -3866,8 +3959,8 @@ packages:
     resolution: {integrity: sha512-2yszojF7vIZ68adIOvzV4bku8OZad9w5H9xF3ZAMZjPuOjBarlflUkjN6DggdV+L71WZuKUfKUhov/34+G5QHg==}
     dev: true
 
-  /electron-to-chromium@1.4.673:
-    resolution: {integrity: sha512-zjqzx4N7xGdl5468G+vcgzDhaHkaYgVcf9MqgexcTqsl2UHSCmOj/Bi3HAprg4BZCpC7HyD8a6nZl6QAZf72gw==}
+  /electron-to-chromium@1.4.675:
+    resolution: {integrity: sha512-+1u3F/XPNIdUwv8i1lDxHAxCvNNU0QIqgb1Ycn+Jnng8ITzWSvUqixRSM7NOazJuwhf65IV17f/VbKj8DmL26A==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -9289,7 +9382,7 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /terser-webpack-plugin@5.3.10(webpack@5.90.2):
+  /terser-webpack-plugin@5.3.10(webpack@5.90.3):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -9309,12 +9402,12 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2
-      terser: 5.27.1
-      webpack: 5.90.2
+      terser: 5.27.2
+      webpack: 5.90.3
     dev: true
 
-  /terser@5.27.1:
-    resolution: {integrity: sha512-29wAr6UU/oQpnTw5HoadwjUZnFQXGdOfj0LjZ4sVxzqwHh/QVkvr7m8y9WoR4iN3FRitVduTc6KdjcW38Npsug==}
+  /terser@5.27.2:
+    resolution: {integrity: sha512-sHXmLSkImesJ4p5apTeT63DsV4Obe1s37qT8qvwHRmVxKTBH7Rv9Wr26VcAMmLbmk9UliiwK8z+657NyJHHy/w==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -9469,7 +9562,7 @@ packages:
     resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==}
     dev: false
 
-  /ts-loader@9.5.1(typescript@5.3.3)(webpack@5.90.2):
+  /ts-loader@9.5.1(typescript@5.3.3)(webpack@5.90.3):
     resolution: {integrity: sha512-rNH3sK9kGZcH9dYzC7CewQm4NtxJTjSEVRJ2DyBZR7f8/wcta+iV44UPCXc5+nzDzivKtlzV6c9P4e+oFhDLYg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -9482,7 +9575,7 @@ packages:
       semver: 7.5.4
       source-map: 0.7.4
       typescript: 5.3.3
-      webpack: 5.90.2
+      webpack: 5.90.3
     dev: true
 
   /tsconfig-paths@3.15.0:
@@ -9981,8 +10074,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: true
 
-  /webpack@5.90.2:
-    resolution: {integrity: sha512-ziXu8ABGr0InCMEYFnHrYweinHK2PWrMqnwdHk2oK3rRhv/1B+2FnfwYv5oD+RrknK/Pp/Hmyvu+eAsaMYhzCw==}
+  /webpack@5.90.3:
+    resolution: {integrity: sha512-h6uDYlWCctQRuXBs1oYpVe6sFcWedl0dpcVaTf/YF67J9bKvwJajFulMVSYKHrksMB3I/pIagRzDxwxkebuzKA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -10012,7 +10105,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(webpack@5.90.2)
+      terser-webpack-plugin: 5.3.10(webpack@5.90.3)
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -10281,10 +10374,10 @@ packages:
     resolution: {directory: packages/ui, type: directory}
     name: '@cf/ui'
     dependencies:
-      '@zag-js/anatomy': 0.34.0
-      '@zag-js/core': 0.34.0
-      '@zag-js/dom-query': 0.34.0
-      '@zag-js/mutation-observer': 0.34.0
-      '@zag-js/types': 0.34.0
-      '@zag-js/utils': 0.34.0
+      '@zag-js/anatomy': 0.36.3
+      '@zag-js/core': 0.36.3
+      '@zag-js/dom-query': 0.36.3
+      '@zag-js/mutation-observer': 0.36.3
+      '@zag-js/types': 0.36.3
+      '@zag-js/utils': 0.36.3
     dev: false

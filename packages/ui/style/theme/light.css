@@ -1,6 +1,18 @@
 @import url('../scrollbar/index.css');
 
 .cf-light-theme {
-  --cf-carousel-bullet-bg: #fdfdfd;
+  --cf-main-font-color: #333333;
+  --cf-main-hover-font-color: #fdfdfd;
+  --cf-main-bg: #fdfdfd;
+
+  --cf-context-menu-bg: var(--cf-main-bg);
+  --cf-context-menu-font-color: var(--cf-main-font-color);
+  --cf-context-menu-font-color-disabled: #b3b3b3;
+  --cf-context-menu-item-hover-bg: #5692e7;
+  --cf-context-menu-item-hover-bg-darken: #1e5dbb;
+  --cf-context-menu-item-hover-font-color: var(--cf-main-hover-font-color);
+  --cf-context-menu-outline-color: #e0e0e0;
+
+  --cf-carousel-bullet-bg: var(--cf-main-bg);
   --cf-carousel-bullet-bg-hover: #757575;
 }

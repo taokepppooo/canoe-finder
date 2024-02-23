@@ -29,6 +29,8 @@ export function machine(userContext: UserDefinedContext) {
         },
         top: 0,
         left: 0,
+        lastScrollTop: 0,
+        lastScrollLeft: 0,
         ...ctx,
       },
       activities: ['setInitialSize'],
@@ -101,7 +103,6 @@ export function machine(userContext: UserDefinedContext) {
     {
       activities: {
         setInitialSize(ctx) {
-          // const win = dom.getWin(ctx);
           const contentEl = dom.getContentEl(ctx);
           ctx.width = contentEl.clientWidth;
           ctx.height = contentEl.clientHeight;
@@ -128,17 +129,34 @@ export function machine(userContext: UserDefinedContext) {
         invokeContentMouseEnter(ctx) {
           if (ctx.xThumb.hasScroll) {
             ctx.xThumb.show = true;
+
+            // When dragging the scrollbar's outer area, don't trigger the scroll event, correct the scrollbar position when the mouse enter.
+            invoke.invokeVerticalScroll(ctx);
           }
           if (ctx.yThumb.hasScroll) {
             ctx.yThumb.show = true;
+
+            // When dragging the scrollbar's outer area, don't trigger the scroll event, correct the scrollbar position when the mouse enter.
+            invoke.invokeHorizontalScroll(ctx);
           }
         },
         invokeContentMouseLeave(ctx) {
           ctx.xThumb.show = false;
           ctx.yThumb.show = false;
         },
-        invokeContentScroll(ctx) {
-          invoke.invokeVerticalScroll(ctx);
+        invokeContentScroll(ctx, evt) {
+          const currentScrollTop = evt.scrollTop;
+          const currentScrollLeft = evt.scrollLeft;
+
+          if (currentScrollTop !== ctx.lastScrollTop) {
+            invoke.invokeVerticalScroll(ctx);
+          }
+          if (currentScrollLeft !== ctx.lastScrollLeft) {
+            invoke.invokeHorizontalScroll(ctx);
+          }
+
+          ctx.lastScrollTop = currentScrollTop;
+          ctx.lastScrollLeft = currentScrollLeft;
         },
         invokeVerticalScroll(ctx) {
           invoke.invokeVerticalScroll(ctx);
@@ -184,7 +202,7 @@ const invoke = {
 
     ctx.xThumb.offset = `${(ctx.left / contentEl.clientWidth) * 100}%`;
   },
-  invokeDragVerticalScroll: (ctx, e, send) => {
+  invokeDragVerticalScroll: (ctx, __evt, send) => {
     if (!ctx.yThumb.dragging) return;
 
     let moveFlag = true;
@@ -231,7 +249,7 @@ const invoke = {
     win.document.addEventListener('mousemove', moveHandler);
     win.document.addEventListener('mouseup', upHandler);
   },
-  invokeDragHorizontalScroll: (ctx, e, send) => {
+  invokeDragHorizontalScroll: (ctx, __evt, send) => {
     if (!ctx.xThumb.dragging) return;
 
     let moveFlag = true;
@@ -278,10 +296,10 @@ const invoke = {
     win.document.addEventListener('mousemove', moveHandler);
     win.document.addEventListener('mouseup', upHandler);
   },
-  invokeDragVerticalScrollStop: (__ctx, __e, send) => {
+  invokeDragVerticalScrollStop: (__ctx, __evt, send) => {
     send('Y_THUMB_DRAG_MOUSE_LEAVE');
   },
-  invokeDragHorizontalScrollStop: (__ctx, __e, send) => {
+  invokeDragHorizontalScrollStop: (__ctx, __evt, send) => {
     send('X_THUMB_DRAG_MOUSE_LEAVE');
   },
 };

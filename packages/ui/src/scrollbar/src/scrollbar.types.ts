@@ -43,6 +43,8 @@ interface PublicContext extends DirectionProperty, CommonProperties {
   yThumb?: YThumbState;
   top?: number;
   left?: number;
+  lastScrollTop?: number;
+  lastScrollLeft?: number;
   ids?: ElementIds;
 }
 

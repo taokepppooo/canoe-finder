@@ -49,9 +49,16 @@ export function connect<T extends PropTypes>(
       onMouseLeave: () => {
         send('CONTENT_MOUSE_LEAVE');
       },
-      onScroll: () => {
-        requestAnimationFrame(() => {
-          send('CONTENT_SCROLL');
+      onScroll: (e) => {
+        const target = e.target as EventTarget & {
+          scrollLeft: number;
+          scrollTop: number;
+        };
+
+        send({
+          type: 'CONTENT_SCROLL',
+          scrollLeft: target.scrollLeft,
+          scrollTop: target.scrollTop,
         });
       },
     }),

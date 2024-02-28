@@ -1,17 +1,17 @@
 .grid-template {
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
 }
 
 .swiper-horizontal {
   & > .swiper-pagination-bullets .swiper-pagination-bullet,
   .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0 1.2rem;
+    margin: 0 0.3rem;
   }
 }
 .swiper {
   .swiper-pagination {
-    $bullet-width: 2rem;
-    $bullet-height: 2rem;
+    $bullet-width: 0.5rem;
+    $bullet-height: 0.5rem;
 
     .swiper-pagination-bullet {
       width: $bullet-width;

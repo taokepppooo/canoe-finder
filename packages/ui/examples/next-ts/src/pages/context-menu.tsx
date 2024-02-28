@@ -13,10 +13,10 @@ const Page = () => {
 
   return (
     <div>
-      <div {...api.contextTriggerProps}>Right Click here</div>
+      <div {...api.contextTriggerProps} style={{ fontSize: '5rem' }}>Right Click here</div>
         <div {...api.positionerProps}>
-          <div className="content-bg"></div>
-          <ul className="focus-outline" {...api.contentProps}>
+          <div className="cf-ui-content-bg"></div>
+          <ul className="cf-ui-focus-outline" {...api.contentProps}>
             <li {...api.getItemProps({ id: "edit" })}>Edit</li>
             <li {...api.getItemProps({ id: "duplicate" })}>Duplicate</li>
             <li {...api.getItemProps({ id: "delete" })}>Delete</li>

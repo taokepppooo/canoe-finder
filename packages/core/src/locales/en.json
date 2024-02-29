@@ -1,2 +1,7 @@
 {
+  "desktop": {
+    "menu": {
+      "addApp": "add icon"
+    }
+  }
 }

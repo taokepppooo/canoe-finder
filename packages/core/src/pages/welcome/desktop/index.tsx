@@ -9,8 +9,11 @@ import type { DesktopContainer } from '@/types/welcome';
 import './index.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useTranslation } from 'react-i18next';
 
 export function Desktop() {
+  const { t } = useTranslation();
+
   const [state, send] = useMachine(
     menu.machine({
       id: useId(),
@@ -42,7 +45,8 @@ export function Desktop() {
           className="h-full"
           modules={[Navigation, Pagination]}
           navigation
-          pagination={{ clickable: true }}>
+          pagination={{ clickable: true }}
+        >
           {swiperList.map((containerList, index) => (
             <SwiperSlide key={index}>
               <div className="overflow-y-auto overflow-x-hidden h-[calc(100%-2rem)] grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
@@ -55,10 +59,7 @@ export function Desktop() {
         <div {...api.positionerProps}>
           <div className="cf-ui-content-bg"></div>
           <ul className="cf-ui-focus-outline" {...api.contentProps}>
-            <li {...api.getItemProps({ id: 'edit' })}>Edit</li>
-            <li {...api.getItemProps({ id: 'duplicate' })}>Duplicate</li>
-            <li {...api.getItemProps({ id: 'delete' })}>Delete</li>
-            <li {...api.getItemProps({ id: 'export' })}>Export...</li>
+            <li {...api.getItemProps({ id: 'edit' })}>{t('desktop.menu.addApp')}</li>
           </ul>
         </div>
       </div>

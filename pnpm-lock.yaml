@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@zag-js/store': ^0.36.3
+  '@zag-js/store': ^0.38.0
 
 importers:
 
@@ -903,13 +903,13 @@ packages:
       '@jridgewell/trace-mapping': 0.3.22
     dev: true
 
-  /@jridgewell/gen-mapping@0.3.4:
-    resolution: {integrity: sha512-Oud2QPM5dHviZNn4y/WhhYKSXksv+1xLEIsNrAbGcFzUN3ubqWRFT5gwPchNc5NuzILOU4tPBDTZ4VwhL8Y7cw==}
+  /@jridgewell/gen-mapping@0.3.5:
+    resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
     engines: {node: '>=6.0.0'}
     dependencies:
       '@jridgewell/set-array': 1.2.1
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.23
+      '@jridgewell/trace-mapping': 0.3.24
     dev: true
 
   /@jridgewell/resolve-uri@3.1.1:
@@ -935,8 +935,8 @@ packages:
   /@jridgewell/source-map@0.3.5:
     resolution: {integrity: sha512-UTYAUj/wviwdsMfzoSJspJxbkH5o1snzwX0//0ENX1u/55kkZZkcTZP6u9bwKGkv+dkk9at4m1Cpt0uY80kcpQ==}
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.4
-      '@jridgewell/trace-mapping': 0.3.23
+      '@jridgewell/gen-mapping': 0.3.5
+      '@jridgewell/trace-mapping': 0.3.24
     dev: true
 
   /@jridgewell/sourcemap-codec@1.4.15:
@@ -949,8 +949,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@jridgewell/trace-mapping@0.3.23:
-    resolution: {integrity: sha512-9/4foRoUKp8s96tSkh8DlAAc5A0Ty8vLXld+l9gjKKY6ckwI8G15f0hskGmuLZu78ZlGa1vtsfOa+lnB4vG6Jg==}
+  /@jridgewell/trace-mapping@0.3.24:
+    resolution: {integrity: sha512-+VaWXDa6+l6MhflBvVXjIEAzb59nQ2JUK3bwRp2zRpPtU+8TFRy9Gg/5oIcNlkEL5PGlBFGfemUVvIgLnTzq7Q==}
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
@@ -1812,8 +1812,8 @@ packages:
       undici-types: 5.26.5
     dev: true
 
-  /@types/node@20.11.23:
-    resolution: {integrity: sha512-ZUarKKfQuRILSNYt32FuPL20HS7XwNT7/uRwSV8tiHWfyyVwDLYZNF6DZKc2bove++pgfsXn9sUwII/OsQ82cQ==}
+  /@types/node@20.11.24:
+    resolution: {integrity: sha512-Kza43ewS3xoLgCEpQrsT+xRo/EJej1y0kVYGiLFE1NEODXGzTfwiC6tXTLMQskn1X4/Rjlh0MQUvx9W+L9long==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -2377,7 +2377,7 @@ packages:
   /@zag-js/core@0.38.0:
     resolution: {integrity: sha512-+S5qKvIPiG4CBNFaVSwdUBViiU96cZPzkUttPhl+qP3Xk7HqBV6vL48PhP01nBXfcpmW0nk8FDX1S9PleWm0oQ==}
     dependencies:
-      '@zag-js/store': 0.36.3
+      '@zag-js/store': 0.38.0
       klona: 2.0.6
     dev: false
 
@@ -2444,7 +2444,7 @@ packages:
       react-dom: '>=18.0.0'
     dependencies:
       '@zag-js/core': 0.38.0
-      '@zag-js/store': 0.36.3
+      '@zag-js/store': 0.38.0
       '@zag-js/types': 0.38.0
       proxy-compare: 2.6.0
       react: 18.2.0
@@ -2455,8 +2455,8 @@ packages:
     resolution: {integrity: sha512-GUabczevwHrCP1fm56otvkushDH8WblXvKrNNSAVyJ1E7r81gsjsoD/aCnIZZ4RabQKrifqDekMfjYMbrRtFkw==}
     dev: false
 
-  /@zag-js/store@0.36.3:
-    resolution: {integrity: sha512-e3oMEyo/C+fg3n2jTHr0bNSwaS+2S5mZQYqfjPXAOSrFhB0kY0lUEUPUtdaHfjAKmbd8fJiLX2tYTeIQ1DlnBA==}
+  /@zag-js/store@0.38.0:
+    resolution: {integrity: sha512-XbGfCxOeRLKqSAKsTOdPW8II+aAcLmyaIEDElWPr+Xt6IicANDi/CvksiiuzFiMutxowJzhXOrfIT7A093D2vQ==}
     dependencies:
       proxy-compare: 2.6.0
     dev: false
@@ -3084,7 +3084,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001591
-      electron-to-chromium: 1.4.687
+      electron-to-chromium: 1.4.689
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
     dev: true
@@ -3985,8 +3985,8 @@ packages:
     resolution: {integrity: sha512-2yszojF7vIZ68adIOvzV4bku8OZad9w5H9xF3ZAMZjPuOjBarlflUkjN6DggdV+L71WZuKUfKUhov/34+G5QHg==}
     dev: true
 
-  /electron-to-chromium@1.4.687:
-    resolution: {integrity: sha512-Ic85cOuXSP6h7KM0AIJ2hpJ98Bo4hyTUjc4yjMbkvD+8yTxEhfK9+8exT2KKYsSjnCn2tGsKVSZwE7ZgTORQCw==}
+  /electron-to-chromium@1.4.689:
+    resolution: {integrity: sha512-GatzRKnGPS1go29ep25reM94xxd1Wj8ritU0yRhCJ/tr1Bg8gKnm6R9O/yPOhGQBoLMZ9ezfrpghNaTw97C/PQ==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -6234,7 +6234,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.11.23
+      '@types/node': 20.11.24
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -9432,7 +9432,7 @@ packages:
       uglify-js:
         optional: true
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.23
+      '@jridgewell/trace-mapping': 0.3.24
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.2

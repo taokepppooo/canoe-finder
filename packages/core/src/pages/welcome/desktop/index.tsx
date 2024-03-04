@@ -45,8 +45,7 @@ export function Desktop() {
           className="h-full"
           modules={[Navigation, Pagination]}
           navigation
-          pagination={{ clickable: true }}
-        >
+          pagination={{ clickable: true }}>
           {swiperList.map((containerList, index) => (
             <SwiperSlide key={index}>
               <div className="overflow-y-auto overflow-x-hidden h-[calc(100%-2rem)] grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">

@@ -1,7 +1,6 @@
 import type { StateMachine as S } from '@zag-js/core';
 import type {
   CommonProperties,
-  Context,
   DirectionProperty,
   PropTypes,
   RequiredBy,
@@ -50,7 +49,7 @@ interface PublicContext extends DirectionProperty, CommonProperties {
 
 export type UserDefinedContext = RequiredBy<PublicContext, 'id'>;
 
-type PrivateContext = Context<object>;
+interface PrivateContext {}
 
 type ComputedContext = Readonly<object>;
 

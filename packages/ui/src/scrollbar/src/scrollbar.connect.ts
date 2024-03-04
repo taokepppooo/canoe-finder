@@ -29,7 +29,7 @@ export function connect<T extends PropTypes>(
       style: {
         position: 'relative',
         width,
-        height,
+        height
       },
     }),
     contentProps: normalize.element({
@@ -114,10 +114,10 @@ export function connect<T extends PropTypes>(
         position: 'absolute',
         top: 0,
         right: 0,
-        display: isShowYScroll ? 'block' : 'none',
+        // display: isShowYScroll ? 'block' : 'none',
         width: '5px',
         height: '100%',
-        backgroundColor: 'var(--cf-scrollbar-track-bg)',
+        backgroundColor: 'var(--cf-scrollbar-track-bg)'
       },
     }),
     yThumbProps: normalize.element({
@@ -129,13 +129,13 @@ export function connect<T extends PropTypes>(
         position: 'absolute',
         top: 0,
         right: 0,
-        display: isShowYScroll ? 'block' : 'none',
+        // display: isShowYScroll ? 'block' : 'none',
         width: '5px',
         height: yThumbHeight,
         backgroundColor: yThumbHover
           ? 'var(--cf-scrollbar-thumb-hover-bg)'
           : 'var(--cf-scrollbar-thumb-bg)',
-        transform: `translateY(${yThumbOffset})`,
+        transform: `translateY(${yThumbOffset})`
       },
       onMouseEnter: () => {
         send('Y_THUMB_MOUSE_ENTER');

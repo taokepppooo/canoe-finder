@@ -35,11 +35,11 @@ export function Desktop() {
     });
   }
   const swiperList: DesktopContainer[][] = [
-    [
-      {
-        title: 'Welcome to Cloudflare Pages',
-      },
-    ],
+    // [
+    //   {
+    //     title: 'Welcome to Cloudflare Pages',
+    //   },
+    // ],
     [...arr2],
   ];
 
@@ -55,14 +55,15 @@ export function Desktop() {
           pagination={{ clickable: true }}>
           {swiperList.map((containerList, index) => (
             <SwiperSlide key={index}>
-              <div className='cf-light-scrollbar' {...scrollbarStateApi.rootProps}>
-                <div className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template" {...scrollbarStateApi.contentProps}>
-                  {getSwiperSlideComponents(containerList)}
-                  <div {...scrollbarStateApi.yTrackProps}>
-                    <div {...scrollbarStateApi.yThumbProps}></div>
+                <div className="cf-light-scrollbar" {...scrollbarStateApi.rootProps}>
+                  <div className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template" {...scrollbarStateApi.contentProps}>
+                    {getSwiperSlideComponents(containerList)}
+
+                    <div {...scrollbarStateApi.yTrackProps}>
+                      <div {...scrollbarStateApi.yThumbProps}></div>
+                    </div>
                   </div>
                 </div>
-              </div>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import '@cf/ui/style/index.css'
+import '../../../../style/index.css'
 import '../styles/index.css'
 import '../../../../style/theme/index.css';
 

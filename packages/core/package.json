@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cf/ui": "file:..\\ui",
+    "@cf/ui": "workspace:^1.0.3",
     "@zag-js/menu": "^0.38.0",
     "@zag-js/react": "^0.38.0",
     "clsx": "^1.2.1",

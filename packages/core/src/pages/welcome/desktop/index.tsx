@@ -23,11 +23,6 @@ export function Desktop() {
   );
   const api = menu.connect(state, send, normalizeProps);
 
-  const [scrollbarState, scrollbarSend] = useMachine(
-    scrollbar.machine({ id: useId(), width: '100%', height: '100%' }),
-  );
-  const scrollbarStateApi = scrollbar.connect(scrollbarState, scrollbarSend, normalizeProps);
-
   const arr2 = [];
   for (let i = 0; i < 200; i++) {
     arr2.push({
@@ -35,11 +30,11 @@ export function Desktop() {
     });
   }
   const swiperList: DesktopContainer[][] = [
-    // [
-    //   {
-    //     title: 'Welcome to Cloudflare Pages',
-    //   },
-    // ],
+    [
+      {
+        title: 'Welcome to Cloudflare Pages',
+      },
+    ],
     [...arr2],
   ];
 
@@ -54,17 +49,7 @@ export function Desktop() {
           navigation
           pagination={{ clickable: true }}>
           {swiperList.map((containerList, index) => (
-            <SwiperSlide key={index}>
-                <div className="cf-light-scrollbar" {...scrollbarStateApi.rootProps}>
-                  <div className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template" {...scrollbarStateApi.contentProps}>
-                    {getSwiperSlideComponents(containerList)}
-
-                    <div {...scrollbarStateApi.yTrackProps}>
-                      <div {...scrollbarStateApi.yThumbProps}></div>
-                    </div>
-                  </div>
-                </div>
-            </SwiperSlide>
+            <SwiperSlide key={index}>{SwiperSlideWithScrollbar(containerList)}</SwiperSlide>
           ))}
         </Swiper>
 
@@ -79,8 +64,24 @@ export function Desktop() {
   );
 }
 
-const getSwiperSlideComponents = (containerList: DesktopContainer[]) => {
-  return containerList.map((container, index) => {
-    return <AppContainer key={index} title={container.title} />;
-  });
+const SwiperSlideWithScrollbar = (containerList: DesktopContainer[]) => {
+  const [state, send] = useMachine(
+    scrollbar.machine({ id: useId(), width: '100%', height: '100%' }),
+  );
+  const scrollbarApi = scrollbar.connect(state, send, normalizeProps);
+
+  return (
+    <div className="cf-light-scrollbar" {...scrollbarApi.rootProps}>
+      <div
+        className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template"
+        {...scrollbarApi.contentProps}>
+        {containerList.map((container, index) => (
+          <AppContainer key={index} title={container.title} />
+        ))}
+        <div {...scrollbarApi.yTrackProps}>
+          <div {...scrollbarApi.yThumbProps}></div>
+        </div>
+      </div>
+    </div>
+  );
 };

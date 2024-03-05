@@ -37,7 +37,7 @@ export function machine(userContext: UserDefinedContext) {
       states: {
         idle: {
           on: {
-            CONTENT_MOUSE_ENTER: {
+            CONTENT_POINTER_ENTER: {
               target: 'focused',
               actions: ['invokeContentMouseEnter'],
             },
@@ -45,18 +45,18 @@ export function machine(userContext: UserDefinedContext) {
         },
         focused: {
           on: {
-            CONTENT_MOUSE_LEAVE: {
+            CONTENT_POINTER_LEAVE: {
               target: 'idle',
-              actions: ['invokeContentMouseLeave'],
+              actions: ['invokeContentPointerLeave'],
             },
             CONTENT_SCROLL: {
               actions: ['invokeContentScroll'],
             },
-            X_THUMB_MOUSE_ENTER: {
+            X_THUMB_POINTER_ENTER: {
               target: 'scroll-hover',
               actions: ['invokeXThumbMouseEnter'],
             },
-            Y_THUMB_MOUSE_ENTER: {
+            Y_THUMB_POINTER_ENTER: {
               target: 'scroll-hover',
               actions: ['invokeYThumbMouseEnter'],
             },
@@ -64,37 +64,37 @@ export function machine(userContext: UserDefinedContext) {
         },
         'scroll-hover': {
           on: {
-            CONTENT_MOUSE_LEAVE: {
+            CONTENT_POINTER_LEAVE: {
               target: 'idle',
-              actions: ['invokeContentMouseLeave'],
+              actions: ['invokeContentPointerLeave'],
             },
-            X_THUMB_MOUSE_DOWN: {
+            X_THUMB_POINTER_DOWN: {
               target: 'scroll-drag',
               actions: ['invokeDragHorizontalScroll'],
             },
-            X_THUMB_MOUSE_LEAVE: {
+            X_THUMB_POINTER_LEAVE: {
               target: 'focused',
-              actions: ['invokeXThumbMouseLeave'],
+              actions: ['invokeXThumbPointerLeave'],
             },
-            Y_THUMB_MOUSE_DOWN: {
+            Y_THUMB_POINTER_DOWN: {
               target: 'scroll-drag',
               actions: ['invokeDragVerticalScroll'],
             },
-            Y_THUMB_MOUSE_LEAVE: {
+            Y_THUMB_POINTER_LEAVE: {
               target: 'focused',
-              actions: ['invokeYThumbMouseLeave'],
+              actions: ['invokeYThumbPointerLeave'],
             },
           },
         },
         'scroll-drag': {
           on: {
-            X_THUMB_DRAG_MOUSE_LEAVE: {
+            X_THUMB_DRAG_POINTER_LEAVE: {
               target: 'focused',
-              actions: ['invokeXThumbMouseLeave'],
+              actions: ['invokeXThumbPointerLeave'],
             },
-            Y_THUMB_DRAG_MOUSE_LEAVE: {
+            Y_THUMB_DRAG_POINTER_LEAVE: {
               target: 'focused',
-              actions: ['invokeYThumbMouseLeave'],
+              actions: ['invokeYThumbPointerLeave'],
             },
           },
         },
@@ -140,7 +140,7 @@ export function machine(userContext: UserDefinedContext) {
             invoke.invokeHorizontalScroll(ctx);
           }
         },
-        invokeContentMouseLeave(ctx) {
+        invokeContentPointerLeave(ctx) {
           ctx.xThumb.show = false;
           ctx.yThumb.show = false;
         },
@@ -178,10 +178,10 @@ export function machine(userContext: UserDefinedContext) {
         invokeYThumbMouseEnter(ctx) {
           ctx.yThumb.hover = true;
         },
-        invokeXThumbMouseLeave(ctx) {
+        invokeXThumbPointerLeave(ctx) {
           ctx.xThumb.hover = false;
         },
-        invokeYThumbMouseLeave(ctx) {
+        invokeYThumbPointerLeave(ctx) {
           ctx.yThumb.hover = false;
         },
       },
@@ -247,8 +247,8 @@ const invokeDragScroll = (ctx, orientation, evt, send) => {
   const upHandler = (e) => {
     thumb.dragging = false;
     const win = dom.getWin(ctx);
-    win.document.removeEventListener('mousemove', moveHandler);
-    win.document.removeEventListener('mouseup', upHandler);
+    win.document.removeEventListener('pointermove', moveHandler);
+    win.document.removeEventListener('pointerup', upHandler);
 
     if (isVertical) {
       invoke.invokeDragVerticalScrollStop(ctx, e, send);
@@ -257,8 +257,8 @@ const invokeDragScroll = (ctx, orientation, evt, send) => {
     }
   };
 
-  win.document.addEventListener('mousemove', moveHandler);
-  win.document.addEventListener('mouseup', upHandler);
+  win.document.addEventListener('pointermove', moveHandler);
+  win.document.addEventListener('pointerup', upHandler);
 };
 
 const invoke = {
@@ -271,9 +271,9 @@ const invoke = {
     invokeDragScroll(ctx, 'horizontal', __evt, send);
   },
   invokeDragVerticalScrollStop: (__ctx, __evt, send) => {
-    send('Y_THUMB_DRAG_MOUSE_LEAVE');
+    send('Y_THUMB_DRAG_POINTER_LEAVE');
   },
   invokeDragHorizontalScrollStop: (__ctx, __evt, send) => {
-    send('X_THUMB_DRAG_MOUSE_LEAVE');
+    send('X_THUMB_DRAG_POINTER_LEAVE');
   },
 };

@@ -12,19 +12,22 @@ export const Dialog: React.FC<DialogProps> = ({ isOpen, setIsOpen }): ReactEleme
   };
 
   return (
-    <HDialog open={isOpen} onClose={toggleDialog}>
-      <HDialog.Panel>
-        <HDialog.Title>Deactivate account</HDialog.Title>
-        <HDialog.Description>This will permanently deactivate your account</HDialog.Description>
+    <HDialog open={isOpen} onClose={toggleDialog} className="relative z-50">
+      {/* The backdrop, rendered as a fixed sibling to the panel container */}
+      <div className="fixed inset-0 bgc-black" aria-hidden="true" />
 
-        <p>
-          Are you sure you want to deactivate your account? All of your data will be permanently
-          removed. This action cannot be undone.
-        </p>
+      {/* Full-screen scrollable container */}
+      <div className="fixed inset-0 w-screen overflow-y-auto">
+        {/* Container to center the panel */}
+        <div className="flex min-h-full items-center justify-center p-4">
+          {/* The actual dialog panel  */}
+          <HDialog.Panel className="mx-auto max-w-sm rounded bgc-white">
+            <HDialog.Title>Complete your order</HDialog.Title>
 
-        <button onClick={toggleDialog}>Deactivate</button>
-        <button onClick={toggleDialog}>Cancel</button>
-      </HDialog.Panel>
+            {/* ... */}
+          </HDialog.Panel>
+        </div>
+      </div>
     </HDialog>
   );
 };

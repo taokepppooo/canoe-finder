@@ -19,3 +19,15 @@ export const themeRules: Rule<Theme>[] = [
     },
   ],
 ];
+
+export const rules: Rule<Theme>[] = [
+  [
+    /^bgc-(.+)$/,
+    ([, color], { theme }) => {
+      if (theme.colors[color]) {
+        return { 'background-color': theme.colors[color] };
+      }
+      return { 'background-color': color };
+    },
+  ],
+];

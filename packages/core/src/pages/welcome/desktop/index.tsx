@@ -3,8 +3,10 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AppContainer } from './appContainer';
 import * as menu from '@zag-js/menu';
+import * as scrollbar from '@cf/ui/src/scrollbar';
 import { useMachine, normalizeProps } from '@zag-js/react';
 import '@cf/ui/style/context-menu/index.css';
+import '@cf/ui/style/scrollbar/index.css';
 import type { DesktopContainer } from '@/types/welcome';
 import './index.scss';
 import 'swiper/css';
@@ -47,11 +49,7 @@ export function Desktop() {
           navigation
           pagination={{ clickable: true }}>
           {swiperList.map((containerList, index) => (
-            <SwiperSlide key={index}>
-              <div className="overflow-y-auto overflow-x-hidden h-[calc(100%-2rem)] grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
-                {getSwiperSlideComponents(containerList)}
-              </div>
-            </SwiperSlide>
+            <SwiperSlide key={index}>{SwiperSlideWithScrollbar(containerList)}</SwiperSlide>
           ))}
         </Swiper>
 
@@ -66,8 +64,24 @@ export function Desktop() {
   );
 }
 
-const getSwiperSlideComponents = (containerList: DesktopContainer[]) => {
-  return containerList.map((container, index) => {
-    return <AppContainer key={index} title={container.title} />;
-  });
+const SwiperSlideWithScrollbar = (containerList: DesktopContainer[]) => {
+  const [state, send] = useMachine(
+    scrollbar.machine({ id: useId(), width: '100%', height: '100%' }),
+  );
+  const scrollbarApi = scrollbar.connect(state, send, normalizeProps);
+
+  return (
+    <div className="cf-light-scrollbar" {...scrollbarApi.rootProps}>
+      <div
+        className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template"
+        {...scrollbarApi.contentProps}>
+        {containerList.map((container, index) => (
+          <AppContainer key={index} title={container.title} />
+        ))}
+        <div {...scrollbarApi.yTrackProps}>
+          <div {...scrollbarApi.yThumbProps}></div>
+        </div>
+      </div>
+    </div>
+  );
 };

@@ -1,0 +1,6 @@
+.scrollbar-grid {
+  display: grid;
+  align-content: flex-start;
+  gap: 0.0625rem;
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+}

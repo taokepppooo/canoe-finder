@@ -7,7 +7,6 @@ export const anatomy = createAnatomy('scrollbar').parts(
   'xThumb',
   'yTrack',
   'yThumb',
-  'scrollTrigger',
 );
 
 export const parts = anatomy.build();

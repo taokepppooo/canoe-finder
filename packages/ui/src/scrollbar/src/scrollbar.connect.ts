@@ -43,11 +43,11 @@ export function connect<T extends PropTypes>(
         width: contentWidth,
         height: contentHeight,
       },
-      onMouseEnter: () => {
-        send('CONTENT_MOUSE_ENTER');
+      onPointerEnter: () => {
+        send('CONTENT_POINTER_ENTER');
       },
-      onMouseLeave: () => {
-        send('CONTENT_MOUSE_LEAVE');
+      onPointerLeave: () => {
+        send('CONTENT_POINTER_LEAVE');
       },
       onScroll: (e) => {
         const target = e.target as EventTarget & {
@@ -77,7 +77,7 @@ export function connect<T extends PropTypes>(
         backgroundColor: 'var(--cf-scrollbar-track-bg)',
       },
     }),
-    xThumbProps: normalize.element({
+    xThumbProps: normalize.button({
       ...parts.xThumb.attrs,
       id: dom.getXThumbId(state.context),
       dir: state.context.dir,
@@ -92,17 +92,18 @@ export function connect<T extends PropTypes>(
         backgroundColor: xThumbHover
           ? 'var(--cf-scrollbar-thumb-hover-bg)'
           : 'var(--cf-scrollbar-thumb-bg)',
+        cursor: 'pointer',
         transform: `translateX(${xThumbOffset})`,
       },
-      onMouseEnter: () => {
-        send('X_THUMB_MOUSE_ENTER');
+      onPointerEnter: () => {
+        send('X_THUMB_POINTER_ENTER');
       },
-      onMouseDown: (e) => {
+      onPointerDown: (e) => {
         e.preventDefault();
-        send('X_THUMB_MOUSE_DOWN');
+        send('X_THUMB_POINTER_DOWN');
       },
-      onMouseLeave: () => {
-        send('X_THUMB_MOUSE_LEAVE');
+      onPointerLeave: () => {
+        send('X_THUMB_POINTER_LEAVE');
       },
     }),
     yTrackProps: normalize.element({
@@ -120,7 +121,7 @@ export function connect<T extends PropTypes>(
         backgroundColor: 'var(--cf-scrollbar-track-bg)',
       },
     }),
-    yThumbProps: normalize.element({
+    yThumbProps: normalize.button({
       ...parts.yThumb.attrs,
       id: dom.getYThumbId(state.context),
       dir: state.context.dir,
@@ -135,17 +136,18 @@ export function connect<T extends PropTypes>(
         backgroundColor: yThumbHover
           ? 'var(--cf-scrollbar-thumb-hover-bg)'
           : 'var(--cf-scrollbar-thumb-bg)',
+        cursor: 'pointer',
         transform: `translateY(${yThumbOffset})`,
       },
-      onMouseEnter: () => {
-        send('Y_THUMB_MOUSE_ENTER');
+      onPointerEnter: () => {
+        send('Y_THUMB_POINTER_ENTER');
       },
-      onMouseDown: (e) => {
+      onPointerDown: (e) => {
         e.preventDefault();
-        send('Y_THUMB_MOUSE_DOWN');
+        send('Y_THUMB_POINTER_DOWN');
       },
-      onMouseLeave: () => {
-        send('Y_THUMB_MOUSE_LEAVE');
+      onPointerLeave: () => {
+        send('Y_THUMB_POINTER_LEAVE');
       },
     }),
   };

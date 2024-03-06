@@ -3,6 +3,7 @@ import type { CommonProperties, DirectionProperty, PropTypes, RequiredBy } from 
 
 export type ElementIds = Partial<{
   root: string;
+  iconify(name: string): string;
   custom: string;
 }>;
 
@@ -26,7 +27,12 @@ export type State = S.State<MachineContext, MachineState>;
 
 export type Send = S.Send<S.AnyEventObject>;
 
+export interface IconifyProps {
+  name: string;
+}
+
 export interface MachineApi<T extends PropTypes = PropTypes> {
   rootProps: T['element'];
+  getIconifyProps(name: IconifyProps): T['element'];
   customProps: T['element'];
 }

@@ -1,5 +1,4 @@
 import { build } from 'esbuild';
-import Icons from 'unplugin-icons/esbuild';
 import fs from 'fs';
 import path from 'path';
 
@@ -46,8 +45,8 @@ build({
   entryPoints: entryPoints,
   bundle: true,
   outdir: 'dist',
-  plugins: [Icons({})],
   loader: { '.ts': 'ts', '.css': 'css' },
   assetNames: '[dir]/[name]-[hash]',
   target: 'esnext',
+  minify: true,
 });

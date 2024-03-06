@@ -1,5 +1,5 @@
 import { createAnatomy } from '@zag-js/anatomy';
 
-export const anatomy = createAnatomy('scrollbar').parts('root', 'custom');
+export const anatomy = createAnatomy('icon').parts('root', 'iconify', 'custom');
 
 export const parts = anatomy.build();

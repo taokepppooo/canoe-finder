@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './appContainer.scss';
-import { Dialog } from '@/components/dialog';
+import { CfDialog } from '@/components/dialog';
 
 export function AppContainer({ title }) {
   let [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -22,7 +22,16 @@ export function AppContainer({ title }) {
         </label>
       </div>
 
-      <Dialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen}></Dialog>
+      <CfDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen}>
+        <div>
+          <div className="font-size-3.25 font-bold color-#000 m-b-2">
+            {title}
+          </div>
+          <div className="font-size-2.25 color-#000">
+            This is a dialog
+          </div>
+        </div>
+      </CfDialog>
     </>
   );
 }

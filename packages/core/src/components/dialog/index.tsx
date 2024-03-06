@@ -1,33 +1,38 @@
-import React, { ReactElement } from 'react';
-import { Dialog as HDialog } from '@headlessui/react';
+import React, { Fragment, ReactElement } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
-type DialogProps = {
+export type DialogProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  children: React.ReactNode;
 };
 
-export const Dialog: React.FC<DialogProps> = ({ isOpen, setIsOpen }): ReactElement => {
+export const CfDialog: React.FC<DialogProps> = ({ isOpen, setIsOpen, children }): ReactElement => {
   const toggleDialog = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <HDialog open={isOpen} onClose={toggleDialog} className="relative z-50">
-      {/* The backdrop, rendered as a fixed sibling to the panel container */}
-      <div className="fixed inset-0 bgc-black" aria-hidden="true" />
-
-      {/* Full-screen scrollable container */}
-      <div className="fixed inset-0 w-screen overflow-y-auto">
-        {/* Container to center the panel */}
-        <div className="flex min-h-full items-center justify-center p-4">
-          {/* The actual dialog panel  */}
-          <HDialog.Panel className="mx-auto max-w-sm rounded bgc-white">
-            <HDialog.Title>Complete your order</HDialog.Title>
-
-            {/* ... */}
-          </HDialog.Panel>
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={toggleDialog}>
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full max-w-md rounded-2xl bgc-white p-x-4 p-y-2 align-middle shadow-xl">
+                { children }
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
         </div>
-      </div>
-    </HDialog>
+      </Dialog>
+    </Transition>
   );
 };

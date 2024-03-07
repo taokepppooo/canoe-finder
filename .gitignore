@@ -2,5 +2,5 @@ node_modules/
 
 .history/
 
-package.lock.json
+package-lock.json
 pnpm-lock.yaml

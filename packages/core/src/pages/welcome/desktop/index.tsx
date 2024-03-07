@@ -2,9 +2,6 @@ import React, { useId } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AppContainer } from './appContainer';
-import * as menu from '@zag-js/menu';
-import { useMachine, normalizeProps } from '@zag-js/react';
-import '@cf/ui/style/context-menu/index.css';
 import type { DesktopContainer } from '@/types/welcome';
 import './index.scss';
 import 'swiper/css';
@@ -13,13 +10,6 @@ import { useTranslation } from 'react-i18next';
 
 export function Desktop() {
   const { t } = useTranslation();
-
-  const [state, send] = useMachine(
-    menu.machine({
-      id: useId(),
-    }),
-  );
-  const api = menu.connect(state, send, normalizeProps);
 
   const arr2 = [];
   for (let i = 0; i < 200; i++) {
@@ -38,7 +28,7 @@ export function Desktop() {
 
   return (
     <>
-      <div
+      {/* <div
         {...api.contextTriggerProps}
         className="h-full sm:p-x-3.75 md:p-x-20 lg:p-x-45 xl:p-x-60 sm:p-y-3.75 md:p-y-7.5 lg:p-y-20">
         <Swiper
@@ -61,7 +51,7 @@ export function Desktop() {
             <li {...api.getItemProps({ id: 'edit' })}>{t('desktop.menu.addApp')}</li>
           </ul>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

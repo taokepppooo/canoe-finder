@@ -1,4 +1,4 @@
-[data-part="positioner"] {
+/* [data-part="positioner"] {
   border-radius: 5px;
   overflow: hidden;
 }
@@ -38,4 +38,4 @@
   color: var(--cf-context-menu-item-hover-font-color);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7),
                0 1px 0 rgba(255, 255, 255, 0.5);
-}
+} */

@@ -7,9 +7,6 @@
   "scripts": {
     "update-dependencies": "node ./scripts/update-dependencies.js"
   },
-  "resolutions": {
-    "@zag-js/store": "^0.36.3"
-  },
   "devDependencies": {
     "lerna": "^8.0.1"
   }

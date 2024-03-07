@@ -19,12 +19,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@iconify/iconify": "^3.1.1",
-    "@zag-js/anatomy": "^0.38.0",
-    "@zag-js/core": "^0.38.0",
-    "@zag-js/dom-query": "^0.38.0",
-    "@zag-js/mutation-observer": "^0.38.0",
-    "@zag-js/types": "^0.38.0",
-    "@zag-js/utils": "^0.38.0"
+    "@iconify/iconify": "^3.1.1"
   }
 }

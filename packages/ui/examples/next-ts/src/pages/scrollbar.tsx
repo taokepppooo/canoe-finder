@@ -1,10 +1,27 @@
-import '@cf/ui/style/scrollbar/index.css'
-import { useId } from "react"
+import React, { useEffect } from 'react'
+import { defineCustomElements } from '../../../../loader'
 
 export const Page = () => {
+  useEffect(() => {
+    defineCustomElements(window)
+  }, [])
+
   return (
     <>
-      <div>scrollbar</div>
+      <cf-ui-scrollbar width="50px" height="50px">
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+        <div>22333333</div>
+      </cf-ui-scrollbar>
     </>
   )
 }

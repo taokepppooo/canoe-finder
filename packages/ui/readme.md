@@ -1,24 +1,7 @@
-# init
+# usage
 
-```bash
-pnpm install
-pnpm start
-```
+## @cf/ui update version
 
-To build the component for production, run:
+## workspace package.json
 
-```bash
-pnpm run build
-```
-
-To run the unit tests for the components, run:
-
-```bash
-pnpm test
-```
-
-To create docs for the components, run:
-
-```bash
-pnpm stencil docs
-```
+`"@cf/ui": "workspace:^1.0.3"`

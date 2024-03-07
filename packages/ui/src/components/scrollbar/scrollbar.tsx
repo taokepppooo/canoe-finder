@@ -14,9 +14,13 @@ export class CfUiScrollbar {
   @Prop() height;
 
   componentDidLoad() {
-    const parentHeight = this.el.parentElement.offsetHeight;
-    this.el.style.height = `${parentHeight}px`;
-    console.log('this.el.style.height', this.el.style.height)
+      const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const { height } = entry.contentRect;
+            this.el.style.height = `${height}px`; // 更新高度
+        }
+    });
+    resizeObserver.observe(this.el.parentElement);
 
     const scrollableContent = this.el.shadowRoot.querySelector('[data-overlayscrollbars-initialize]') as HTMLElement;
     try {

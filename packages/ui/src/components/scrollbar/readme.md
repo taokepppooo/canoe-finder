@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default  |
-| -------- | --------- | ----------- | -------- | -------- |
-| `height` | `height`  |             | `string` | `'100%'` |
-| `width`  | `width`   |             | `string` | `'100%'` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `height` | `height`  |             | `any`    | `undefined` |
+| `width`  | `width`   |             | `string` | `'100%'`    |
 
 
 ----------------------------------------------

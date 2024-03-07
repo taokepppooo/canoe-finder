@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface CfUiScrollbar {
-        "height": string;
+        "height": any;
         "width": string;
     }
 }
@@ -24,7 +24,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CfUiScrollbar {
-        "height"?: string;
+        "height"?: any;
         "width"?: string;
     }
     interface IntrinsicElements {

@@ -5,10 +5,13 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { PartialOptions } from "overlayscrollbars";
+export { PartialOptions } from "overlayscrollbars";
 export namespace Components {
     interface CfUiScrollbar {
         "height": any;
-        "width": string;
+        "options": PartialOptions;
+        "width": any;
     }
 }
 declare global {
@@ -25,7 +28,8 @@ declare global {
 declare namespace LocalJSX {
     interface CfUiScrollbar {
         "height"?: any;
-        "width"?: string;
+        "options"?: PartialOptions;
+        "width"?: any;
     }
     interface IntrinsicElements {
         "cf-ui-scrollbar": CfUiScrollbar;

@@ -1,5 +1,5 @@
 import { Component, Prop, h, Element } from '@stencil/core';
-import { OverlayScrollbars } from 'overlayscrollbars';
+import { OverlayScrollbars, type PartialOptions } from 'overlayscrollbars';
 
 @Component({
   tag: 'cf-ui-scrollbar',
@@ -10,15 +10,18 @@ import { OverlayScrollbars } from 'overlayscrollbars';
 export class CfUiScrollbar {
   @Element() el: HTMLElement;
 
-  @Prop() width = '100%';
+  @Prop() width;
   @Prop() height;
+  @Prop() options: PartialOptions;
 
   componentDidLoad() {
-      const resizeObserver = new ResizeObserver(entries => {
-        for (let entry of entries) {
-            const { height } = entry.contentRect;
-            this.el.style.height = `${height}px`; // 更新高度
-        }
+    console.log('this.options1', this.options)
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          this.el.style.width = `${width}px`;
+          this.el.style.height = `${height}px`;
+      }
     });
     resizeObserver.observe(this.el.parentElement);
 
@@ -26,7 +29,9 @@ export class CfUiScrollbar {
     try {
       OverlayScrollbars(
         scrollableContent,
-        {},
+        {
+          ...this.options,
+        },
       );
     } catch (error) {
       console.error('Error initializing OverlayScrollbars', error);
@@ -35,7 +40,12 @@ export class CfUiScrollbar {
 
   render() {
     return (
-      <div style={{ width: this.width, height: this.height || this.el.style.height }}>
+      <div
+        style={{
+          width: this.width || this.el.style.width,
+          height: this.height || this.el.style.height
+        }}
+      >
         <div class="overlayscrollbars" data-overlayscrollbars-initialize>
           <slot />
         </div>

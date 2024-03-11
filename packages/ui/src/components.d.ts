@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { PartialOptions } from "overlayscrollbars";
 export { PartialOptions } from "overlayscrollbars";
 export namespace Components {
+    interface CfUiContextMenu {
+    }
     interface CfUiScrollbar {
         "height": any;
         "options": PartialOptions;
@@ -15,6 +17,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCfUiContextMenuElement extends Components.CfUiContextMenu, HTMLStencilElement {
+    }
+    var HTMLCfUiContextMenuElement: {
+        prototype: HTMLCfUiContextMenuElement;
+        new (): HTMLCfUiContextMenuElement;
+    };
     interface HTMLCfUiScrollbarElement extends Components.CfUiScrollbar, HTMLStencilElement {
     }
     var HTMLCfUiScrollbarElement: {
@@ -22,16 +30,20 @@ declare global {
         new (): HTMLCfUiScrollbarElement;
     };
     interface HTMLElementTagNameMap {
+        "cf-ui-context-menu": HTMLCfUiContextMenuElement;
         "cf-ui-scrollbar": HTMLCfUiScrollbarElement;
     }
 }
 declare namespace LocalJSX {
+    interface CfUiContextMenu {
+    }
     interface CfUiScrollbar {
         "height"?: any;
         "options"?: PartialOptions;
         "width"?: any;
     }
     interface IntrinsicElements {
+        "cf-ui-context-menu": CfUiContextMenu;
         "cf-ui-scrollbar": CfUiScrollbar;
     }
 }
@@ -39,6 +51,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cf-ui-context-menu": LocalJSX.CfUiContextMenu & JSXBase.HTMLAttributes<HTMLCfUiContextMenuElement>;
             "cf-ui-scrollbar": LocalJSX.CfUiScrollbar & JSXBase.HTMLAttributes<HTMLCfUiScrollbarElement>;
         }
     }

@@ -15,7 +15,6 @@ export class CfUiScrollbar {
   @Prop() options: PartialOptions;
 
   componentDidLoad() {
-    console.log('this.options1', this.options)
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
           const { width, height } = entry.contentRect;

@@ -1,11 +1,23 @@
-import '../../../../style/context-menu/index.css'
-import { useId } from "react"
+import React, { useEffect, useRef, useState } from 'react'
+import { defineCustomElements, type PartialOptions } from '../../../../loader'
 
-const Page = () => {
+interface CfUiContextMenuElement extends HTMLElement {
+  options: PartialOptions;
+}
+
+export const Page = () => {
+  const [options] = useState<PartialOptions>()
+  const scrollbarRef = useRef<CfUiContextMenuElement>(null);
+
+  useEffect(() => {
+    defineCustomElements(window)
+  }, [options])
+
   return (
-    <div>
-
-    </div>
+    <>
+      <cf-ui-context-menu>
+      </cf-ui-context-menu>
+    </>
   )
 }
 

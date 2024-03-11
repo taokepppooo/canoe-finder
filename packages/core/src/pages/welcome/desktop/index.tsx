@@ -6,7 +6,6 @@ import type { DesktopContainer } from '@/types/welcome';
 import './index.scss';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useTranslation } from 'react-i18next';
 import { defineCustomElements } from '@cf/ui/loader';
 import type { PartialOptions } from '@cf/ui/dist/types';
 
@@ -55,32 +54,30 @@ export function Desktop() {
     }
   }, [options, desktop]);
 
-  const { t } = useTranslation();
-
   const SwiperSlideWithScrollbar = (d: DesktopContainer) => {
     return (
-      <div className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
-        {d.item.map((container) => (
-          <AppContainer key={container.id} title={container.title} />
-        ))}
-      </div>
+      <cf-ui-scrollbar ref={scrollbarRef}>
+        <div className="h-full grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
+          {d.item.map((container) => (
+            <AppContainer key={container.id} title={container.title} />
+          ))}
+        </div>
+      </cf-ui-scrollbar>
     );
   };
 
   return (
     <>
       <div className="h-full sm:p-x-3.75 md:p-x-20 lg:p-x-45 xl:p-x-60 sm:p-y-3.75 md:p-y-7.5 lg:p-y-20">
-        <cf-ui-scrollbar ref={scrollbarRef}>
-          <Swiper
-            className="h-full"
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}>
-            {desktop.map((d) => (
-              <SwiperSlide key={d.id}>{SwiperSlideWithScrollbar(d)}</SwiperSlide>
-            ))}
-          </Swiper>
-        </cf-ui-scrollbar>
+        <Swiper
+          className="h-full"
+          modules={[Navigation, Pagination]}
+          navigation
+          pagination={{ clickable: true }}>
+          {desktop.map((d) => (
+            <SwiperSlide key={d.id}>{SwiperSlideWithScrollbar(d)}</SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );

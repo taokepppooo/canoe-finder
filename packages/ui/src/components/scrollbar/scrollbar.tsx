@@ -10,20 +10,11 @@ import { OverlayScrollbars, type PartialOptions } from 'overlayscrollbars';
 export class CfUiScrollbar {
   @Element() el: HTMLElement;
 
-  @Prop() width;
-  @Prop() height;
+  @Prop() width: string = '100%';
+  @Prop() height: string = '100%';
   @Prop() options: PartialOptions;
 
   componentDidLoad() {
-    const resizeObserver = new ResizeObserver(entries => {
-      for (let entry of entries) {
-          const { width, height } = entry.contentRect;
-          this.el.style.width = `${width}px`;
-          this.el.style.height = `${height}px`;
-      }
-    });
-    resizeObserver.observe(this.el.parentElement);
-
     const scrollableContent = this.el.shadowRoot.querySelector('[data-overlayscrollbars-initialize]') as HTMLElement;
     try {
       OverlayScrollbars(
@@ -41,8 +32,8 @@ export class CfUiScrollbar {
     return (
       <div
         style={{
-          width: this.width || this.el.style.width,
-          height: this.height || this.el.style.height
+          width: this.width,
+          height: this.height
         }}
       >
         <div class="overlayscrollbars" data-overlayscrollbars-initialize>

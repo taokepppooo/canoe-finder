@@ -1,6 +1,7 @@
 @import url('../../../node_modules/overlayscrollbars/styles/overlayscrollbars.min.css');
 
 :host {
+  height: 100%;
   display: block;
 }
 
@@ -11,6 +12,10 @@
 .overlayscrollbars {
   width: 100%;
   height: 100%;
+}
+
+.overlayscrollbars .os-scrollbar-handle {
+  cursor: pointer;
 }
 
 [data-overlayscrollbars-viewport] {

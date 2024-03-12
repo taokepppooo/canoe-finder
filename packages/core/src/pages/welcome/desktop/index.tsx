@@ -57,7 +57,7 @@ export function Desktop() {
   const SwiperSlideWithScrollbar = (d: DesktopContainer) => {
     return (
       <cf-ui-scrollbar ref={scrollbarRef}>
-        <div className="h-full grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
+        <div className="grid grid-content-start sm:grid-gap-0.25 md:grid-gap-5 lg:grid-gap-8 grid-template">
           {d.item.map((container) => (
             <AppContainer key={container.id} title={container.title} />
           ))}

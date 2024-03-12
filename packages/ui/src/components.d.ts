@@ -9,11 +9,12 @@ import { PartialOptions } from "overlayscrollbars";
 export { PartialOptions } from "overlayscrollbars";
 export namespace Components {
     interface CfUiContextMenu {
+        "height": string;
     }
     interface CfUiScrollbar {
-        "height": any;
+        "height": string;
         "options": PartialOptions;
-        "width": any;
+        "width": string;
     }
 }
 declare global {
@@ -36,11 +37,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CfUiContextMenu {
+        "height"?: string;
     }
     interface CfUiScrollbar {
-        "height"?: any;
+        "height"?: string;
         "options"?: PartialOptions;
-        "width"?: any;
+        "width"?: string;
     }
     interface IntrinsicElements {
         "cf-ui-context-menu": CfUiContextMenu;

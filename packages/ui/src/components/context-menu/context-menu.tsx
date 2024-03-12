@@ -1,4 +1,4 @@
-import { Component, h, State, Element, Listen } from '@stencil/core';
+import { Component, h, Prop, State, Element, Host } from '@stencil/core';
 import '@material/web/button/filled-button.js';
 import '@material/web/menu/menu.js';
 import '@material/web/menu/menu-item.js';
@@ -11,18 +11,27 @@ import '@material/web/menu/menu-item.js';
 export class CfUiContextMenu {
   @Element() el: HTMLElement;
 
-  @State() isOpen: boolean = false;
+  @Prop() height: string;
 
-  @Listen('keydown')
-  handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'ArrowDown') {
-      this.isOpen = true;
-      ev.preventDefault();
-    }
-  }
+  @State() isOpen: boolean = false;
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
+  }
+
+  setStyle = () => {
+    const menu = this.el.shadowRoot.querySelector('md-menu') as HTMLElement;
+    if (menu && menu.shadowRoot) {
+      menu.style.height = this.height;
+      const items = menu.shadowRoot.querySelector('.items') as HTMLElement;
+      items.style['scrollbar-width'] = 'none';
+      const itemPadding = items.querySelector('.item-padding') as HTMLElement;
+      itemPadding.style['padding-block'] = 0;
+    }
+  }
+
+  componentDidLoad() {
+    this.setStyle();
   }
 
   render() {
@@ -34,34 +43,57 @@ export class CfUiContextMenu {
       'Green Grapes',
       'Olive',
       'Orange',
+      'Apricot',
+      'Avocado',
+      'Green Apple',
+      'Green Grapes',
+      'Olive',
+      'Orange',
+      'Apricot',
+      'Avocado',
+      'Green Apple',
+      'Green Grapes',
+      'Olive',
+      'Orange',
+      'Orange',
+      'Apricot',
+      'Avocado',
+      'Green Apple',
+      'Green Grapes',
+      'Olive',
+      'Orange',
+      'Apricot',
+      'Avocado',
+      'Green Apple',
+      'Green Grapes',
+      'Olive',
     ];
 
     return (
-      <div class="root">
+      <Host id="cf-ui-context-menu">
         <md-filled-button
           id="button"
-          aria-haspopup="true"
-          aria-controls="menu"
-          aria-expanded={this.isOpen ? 'true' : 'false'}
           onClick={() => this.toggleMenu()}
         >
           Open Menu
         </md-filled-button>
         <md-menu
-          id="menu"
-          open={true}
-          aria-label="Menu of fruit"
-          onClose={() => this.toggleMenu()}
+          open={this.isOpen}
+          anchor="button"
+          positioning="document"
+          onClosed={() => this.toggleMenu()}
         >
-          {
-            fruitNames.map((name, index) => (
-              <md-menu-item id={`${index}`}>
-                <div slot="headline">{name}</div>
-              </md-menu-item>
-            ))
-          }
+          <cf-ui-scrollbar height={ this.height }>
+            {
+              fruitNames.map((name, index) => (
+                <md-menu-item id={`${index}`}>
+                  <div slot="headline">{name}</div>
+                </md-menu-item>
+              ))
+            }
+          </cf-ui-scrollbar>
         </md-menu>
-      </div>
+      </Host>
     );
   }
 }

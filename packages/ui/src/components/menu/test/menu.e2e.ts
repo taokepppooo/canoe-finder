@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('context-menu', () => {
+describe('menu', () => {
   it('renders', async () => {
     const page = await newE2EPage();
-    await page.setContent('<context-menu></context-menu>');
+    await page.setContent('<cf-ui-menu></cf-ui-menu>');
 
-    const element = await page.find('context-menu');
+    const element = await page.find('menu');
     expect(element).toHaveClass('hydrated');
   });
 });

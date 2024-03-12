@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CfUiContextMenu } from '../context-menu';
+import { CfUiContextMenu } from '../menu';
 
-describe('context-menu', () => {
+describe('menu', () => {
   it('renders', async () => {
     const page = await newSpecPage({
       components: [CfUiContextMenu],
-      html: `<context-menu></context-menu>`,
+      html: `<cf-ui-menu></cf-ui-menu>`,
     });
     expect(page.root).toEqualHtml(`
-      <context-menu>
+      <cf-ui-menu>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </context-menu>
+      </cf-ui-menu>
     `);
   });
 });

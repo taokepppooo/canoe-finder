@@ -1,19 +1,36 @@
-import { Component, h, Prop, State, Element, Host } from '@stencil/core';
+import { Component, h, Prop, State, Element, Host, Listen } from '@stencil/core';
 import '@material/web/button/filled-button.js';
 import '@material/web/menu/menu.js';
 import '@material/web/menu/menu-item.js';
+import { MenuItem } from './types';
 
 @Component({
-  tag: 'cf-ui-context-menu',
-  styleUrl: 'context-menu.css',
+  tag: 'cf-ui-menu',
+  styleUrl: 'menu.css',
   shadow: true,
 })
+
 export class CfUiContextMenu {
   @Element() el: HTMLElement;
 
   @Prop() height: string;
+  @Prop() items: MenuItem[] = [];
 
   @State() isOpen: boolean = false;
+
+  @Listen('click')
+  handleSlotClick(event: MouseEvent) {
+    if ((event.target as HTMLElement).slot === 'click') {
+      this.toggleMenu();
+    }
+  }
+  @Listen('contextmenu')
+  handleRightClick(event: MouseEvent) {
+    event.preventDefault();
+    if ((event.target as HTMLElement).slot === 'contextmenu') {
+      this.toggleMenu();
+    }
+  }
 
   toggleMenu() {
     this.isOpen = !this.isOpen;
@@ -35,59 +52,23 @@ export class CfUiContextMenu {
   }
 
   render() {
-    const fruitNames = [
-      'Apple',
-      'Apricot',
-      'Avocado',
-      'Green Apple',
-      'Green Grapes',
-      'Olive',
-      'Orange',
-      'Apricot',
-      'Avocado',
-      'Green Apple',
-      'Green Grapes',
-      'Olive',
-      'Orange',
-      'Apricot',
-      'Avocado',
-      'Green Apple',
-      'Green Grapes',
-      'Olive',
-      'Orange',
-      'Orange',
-      'Apricot',
-      'Avocado',
-      'Green Apple',
-      'Green Grapes',
-      'Olive',
-      'Orange',
-      'Apricot',
-      'Avocado',
-      'Green Apple',
-      'Green Grapes',
-      'Olive',
-    ];
-
     return (
-      <Host id="cf-ui-context-menu">
-        <md-filled-button
-          id="button"
-          onClick={() => this.toggleMenu()}
-        >
-          Open Menu
-        </md-filled-button>
+      <Host id="cf-ui-menu">
+        <div id="anchor">
+          <slot name="click"></slot>
+          <slot name="contextmenu"></slot>
+        </div>
         <md-menu
           open={this.isOpen}
-          anchor="button"
+          anchor="anchor"
           positioning="document"
           onClosed={() => this.toggleMenu()}
         >
           <cf-ui-scrollbar height={ this.height }>
             {
-              fruitNames.map((name, index) => (
-                <md-menu-item id={`${index}`}>
-                  <div slot="headline">{name}</div>
+              this.items?.map((item: MenuItem) => (
+                <md-menu-item id={item.name}>
+                  <div slot="headline">{item.label}</div>
                 </md-menu-item>
               ))
             }

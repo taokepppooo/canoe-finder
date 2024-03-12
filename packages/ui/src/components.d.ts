@@ -5,11 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { MenuItem } from "./components/menu/types";
 import { PartialOptions } from "overlayscrollbars";
+export { MenuItem } from "./components/menu/types";
 export { PartialOptions } from "overlayscrollbars";
 export namespace Components {
-    interface CfUiContextMenu {
+    interface CfUiMenu {
         "height": string;
+        "items": MenuItem[];
     }
     interface CfUiScrollbar {
         "height": string;
@@ -18,11 +21,11 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLCfUiContextMenuElement extends Components.CfUiContextMenu, HTMLStencilElement {
+    interface HTMLCfUiMenuElement extends Components.CfUiMenu, HTMLStencilElement {
     }
-    var HTMLCfUiContextMenuElement: {
-        prototype: HTMLCfUiContextMenuElement;
-        new (): HTMLCfUiContextMenuElement;
+    var HTMLCfUiMenuElement: {
+        prototype: HTMLCfUiMenuElement;
+        new (): HTMLCfUiMenuElement;
     };
     interface HTMLCfUiScrollbarElement extends Components.CfUiScrollbar, HTMLStencilElement {
     }
@@ -31,13 +34,14 @@ declare global {
         new (): HTMLCfUiScrollbarElement;
     };
     interface HTMLElementTagNameMap {
-        "cf-ui-context-menu": HTMLCfUiContextMenuElement;
+        "cf-ui-menu": HTMLCfUiMenuElement;
         "cf-ui-scrollbar": HTMLCfUiScrollbarElement;
     }
 }
 declare namespace LocalJSX {
-    interface CfUiContextMenu {
+    interface CfUiMenu {
         "height"?: string;
+        "items"?: MenuItem[];
     }
     interface CfUiScrollbar {
         "height"?: string;
@@ -45,7 +49,7 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface IntrinsicElements {
-        "cf-ui-context-menu": CfUiContextMenu;
+        "cf-ui-menu": CfUiMenu;
         "cf-ui-scrollbar": CfUiScrollbar;
     }
 }
@@ -53,7 +57,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "cf-ui-context-menu": LocalJSX.CfUiContextMenu & JSXBase.HTMLAttributes<HTMLCfUiContextMenuElement>;
+            "cf-ui-menu": LocalJSX.CfUiMenu & JSXBase.HTMLAttributes<HTMLCfUiMenuElement>;
             "cf-ui-scrollbar": LocalJSX.CfUiScrollbar & JSXBase.HTMLAttributes<HTMLCfUiScrollbarElement>;
         }
     }

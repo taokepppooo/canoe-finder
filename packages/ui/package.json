@@ -27,8 +27,10 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@iconify-icons/bi": "^1.2.19",
     "@material/web": "^1.3.0",
     "@stencil/core": "^4.7.0",
+    "iconify-icon": "^2.0.0",
     "overlayscrollbars": "^2.6.0"
   },
   "devDependencies": {

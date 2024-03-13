@@ -1,5 +1,13 @@
-# 注意
+# notice
 
-## 字体
+## font
 
-字体要除4
+font size ÷ 4
+
+## prepare
+
+```bash
+cd @cf/ui
+pnpm install
+pnpm build
+```

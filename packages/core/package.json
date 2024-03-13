@@ -10,9 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cf/ui": "workspace:^1.0.3",
-    "@zag-js/menu": "^0.38.0",
-    "@zag-js/react": "^0.38.0",
+    "@cf/ui": "workspace:*",
+    "@headlessui/react": "^1.7.18",
     "clsx": "^1.2.1",
     "core-js": "^3.30.1",
     "i18next": "^23.7.19",

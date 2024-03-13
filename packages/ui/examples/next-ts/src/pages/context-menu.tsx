@@ -1,29 +1,23 @@
-import * as menu from "@zag-js/menu"
-import '../../../../style/context-menu/index.css'
-import { useMachine, normalizeProps } from "@zag-js/react"
-import { useId } from "react"
+import React, { useEffect, useRef, useState } from 'react'
+import { defineCustomElements, type PartialOptions } from '../../../../loader'
 
-const Page = () => {
-  const [state, send] = useMachine(
-    menu.machine({
-      id: useId(),
-    }),
-  )
-  const api = menu.connect(state, send, normalizeProps)
+interface CfUiContextMenuElement extends HTMLElement {
+  options: PartialOptions;
+}
+
+export const Page = () => {
+  const [options] = useState<PartialOptions>()
+  const scrollbarRef = useRef<CfUiContextMenuElement>(null);
+
+  useEffect(() => {
+    defineCustomElements(window)
+  }, [options])
 
   return (
-    <div>
-      <div {...api.contextTriggerProps}>Right Click here</div>
-        <div {...api.positionerProps}>
-          <div className="cf-ui-content-bg"></div>
-          <ul className="cf-ui-focus-outline" {...api.contentProps}>
-            <li {...api.getItemProps({ id: "edit" })}>Edit</li>
-            <li {...api.getItemProps({ id: "duplicate" })}>Duplicate</li>
-            <li {...api.getItemProps({ id: "delete" })}>Delete</li>
-            <li {...api.getItemProps({ id: "export" })}>Export...</li>
-          </ul>
-        </div>
-    </div>
+    <>
+      <cf-ui-context-menu>
+      </cf-ui-context-menu>
+    </>
   )
 }
 

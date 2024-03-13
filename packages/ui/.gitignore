@@ -1,4 +1,18 @@
-.history
+dist/
+www/
+loader/
+.history/
 
-package.lock.json
+*~
+*.sw[mnpcod]
+*.log
+*.lock
+*.tmp
+*.tmp.*
+
+.vscode/
+node_modules/
+$RECYCLE.BIN/
+
+package-lock.json
 pnpm-lock.yaml

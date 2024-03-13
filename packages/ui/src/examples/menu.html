@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+
+  <script type="module" src="/build/cf-ui.esm.js"></script>
+  <script nomodule src="/build/cf-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="/theme/index.css"></l>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuItems = [
+        {
+          label: 'Item 1',
+          name: 'item1',
+          click: () => {
+            console.log('Item 1 clicked');
+          }
+        },
+        {
+          label: 'Item 2',
+          name: 'item2',
+          click: () => {
+            console.log('Item 2 clicked');
+          }
+        },
+        {
+          label: 'Item 3',
+          name: 'item3',
+          click: () => {
+            console.log('Item 3 clicked');
+          }
+        },
+        {
+          label: 'Item 4',
+          name: 'item4',
+          click: () => {
+            console.log('Item 4 clicked');
+          }
+        }
+      ];
+
+      document.querySelector('#click-menu').items = menuItems;
+      document.querySelector('#context-menu').items = menuItems;
+    });
+  </script>
+</head>
+<body>
+  <div class="cf-light-theme">
+    <cf-ui-menu id="click-menu" height="100px">
+      <button slot="click">2</button>
+    </cf-ui-menu>
+    <cf-ui-menu id="context-menu" height="100px">
+      <button slot="contextmenu">1</button>
+    </cf-ui-menu>
+  </div>
+</body>
+</html>

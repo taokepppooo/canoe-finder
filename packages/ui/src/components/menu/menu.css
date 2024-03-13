@@ -1,3 +1,7 @@
 :host {
   display: block;
 }
+
+#cf-ui-menu md-menu {
+  height: var(--menu-height);
+}

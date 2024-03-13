@@ -1,0 +1,9 @@
+:root {
+  --cf-menu-bg: var(--cf-main-bg);
+  --cf-menu-font-color: var(--cf-main-font-color);
+  --cf-menu-font-color-disabled: #b3b3b3;
+  --cf-menu-item-hover-bg: #5692e7;
+  --cf-menu-item-hover-bg-darken: #1e5dbb;
+  --cf-menu-item-hover-font-color: var(--cf-main-hover-font-color);
+  --cf-menu-outline-color: #e0e0e0;
+}

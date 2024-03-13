@@ -39,11 +39,21 @@ export class CfUiContextMenu {
   setStyle = () => {
     const menu = this.el.shadowRoot.querySelector('md-menu') as HTMLElement;
     if (menu && menu.shadowRoot) {
-      menu.style.height = this.height;
       const items = menu.shadowRoot.querySelector('.items') as HTMLElement;
-      items.style['scrollbar-width'] = 'none';
       const itemPadding = items.querySelector('.item-padding') as HTMLElement;
       itemPadding.style['padding-block'] = 0;
+
+      const scrollbar = menu.querySelector('[part="scrollbar"]') as HTMLElement;
+      const menuItems = scrollbar.querySelectorAll('md-menu-item') as NodeListOf<HTMLElement>;
+      menuItems.forEach((item) => {
+        const i = item.shadowRoot.querySelector('md-item') as HTMLElement
+
+        i.style['padding-top'] = '8px';
+        i.style['padding-bottom'] = '8px';
+        i.style['padding-inline'] = '8px';
+        i.style['font-size'] = '16px';
+        i.style['min-height'] = '40px';
+      });
     }
   }
 
@@ -53,21 +63,22 @@ export class CfUiContextMenu {
 
   render() {
     return (
-      <Host id="cf-ui-menu">
+      <Host id="cf-ui-menu" style={{ '--menu-height': this.height }}>
         <div id="anchor">
           <slot name="click"></slot>
           <slot name="contextmenu"></slot>
         </div>
         <md-menu
+          part="menu"
           open={this.isOpen}
           anchor="anchor"
           positioning="document"
           onClosed={() => this.toggleMenu()}
         >
-          <cf-ui-scrollbar height={ this.height }>
+          <cf-ui-scrollbar part="scrollbar" height={ this.height }>
             {
               this.items?.map((item: MenuItem) => (
-                <md-menu-item id={item.name}>
+                <md-menu-item part="menu-item" id={item.name}>
                   <div slot="headline">{item.label}</div>
                 </md-menu-item>
               ))

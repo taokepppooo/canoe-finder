@@ -3,6 +3,10 @@
   --cf-main-hover-font-color: #fdfdfd;
   --cf-main-bg: #fdfdfd;
 
+  --cf-menu-font-color: var(--cf-main-font-color);
+  --md-menu-container-color: var(--cf-main-bg);
+  --md-sys-color-surface-container: var(--cf-main-bg);
+
   --cf-carousel-bullet-bg: var(--cf-main-bg);
   --cf-carousel-bullet-bg-hover: #757575;
 }

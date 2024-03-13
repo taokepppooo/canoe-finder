@@ -5,3 +5,7 @@
 #cf-ui-menu md-menu {
   height: var(--menu-height);
 }
+
+[part="menu-item"] [slot="headline"]{
+  color: var(--cf-context-menu-font-color);
+}

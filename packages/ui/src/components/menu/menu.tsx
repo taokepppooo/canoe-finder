@@ -40,6 +40,7 @@ export class CfUiContextMenu {
     const menu = this.el.shadowRoot.querySelector('md-menu') as HTMLElement;
     if (menu && menu.shadowRoot) {
       const items = menu.shadowRoot.querySelector('.items') as HTMLElement;
+      items.style['background-color'] = 'var(--md-menu-container-color, var(--md-sys-color-surface-container, var(--cf-menu-bg)))';
       const itemPadding = items.querySelector('.item-padding') as HTMLElement;
       itemPadding.style['padding-block'] = 0;
 
@@ -48,11 +49,11 @@ export class CfUiContextMenu {
       menuItems.forEach((item) => {
         const i = item.shadowRoot.querySelector('md-item') as HTMLElement
 
-        i.style['padding-top'] = '8px';
-        i.style['padding-bottom'] = '8px';
+        i.style['padding-top'] = '4px';
+        i.style['padding-bottom'] = '4px';
         i.style['padding-inline'] = '8px';
-        i.style['font-size'] = '16px';
-        i.style['min-height'] = '40px';
+        i.style['font-size'] = '14px';
+        i.style['min-height'] = '32px';
       });
     }
   }
@@ -73,7 +74,7 @@ export class CfUiContextMenu {
           open={this.isOpen}
           anchor="anchor"
           positioning="document"
-          onClosed={() => this.toggleMenu()}
+          onClosed={() => this.isOpen = false}
         >
           <cf-ui-scrollbar part="scrollbar" height={ this.height }>
             {

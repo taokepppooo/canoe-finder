@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { CfUiContextMenu } from '../menu';
+import { CfUiMenu } from '../menu';
 
 describe('menu', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [CfUiContextMenu],
+      components: [CfUiMenu],
       html: `<cf-ui-menu></cf-ui-menu>`,
     });
     expect(page.root).toEqualHtml(`

@@ -2,7 +2,7 @@ import { Component, h, Prop, State, Element, Host, Listen } from '@stencil/core'
 import '@material/web/button/filled-button.js';
 import '@material/web/menu/menu.js';
 import '@material/web/menu/menu-item.js';
-import { MenuItem } from './types';
+import type { MenuItem, MenuOption, MenuType } from './types';
 
 @Component({
   tag: 'cf-ui-menu',
@@ -10,30 +10,58 @@ import { MenuItem } from './types';
   shadow: true,
 })
 
-export class CfUiContextMenu {
+export class CfUiMenu {
   @Element() el: HTMLElement;
 
   @Prop() height: string;
   @Prop() items: MenuItem[] = [];
+  @Prop() type: MenuType = 'trigger';
+  @Prop() options: MenuOption = {
+    positioning: 'document',
+  };
 
   @State() isOpen: boolean = false;
+  @State() clickFlag: boolean = false;
 
   @Listen('click')
-  handleSlotClick(event: MouseEvent) {
-    if ((event.target as HTMLElement).slot === 'click') {
+  handleSlotClick() {
+    if (this.type === 'trigger' ||
+      (this.type === 'contextmenu' && this.isOpen)
+    ) {
       this.toggleMenu();
     }
   }
   @Listen('contextmenu')
   handleRightClick(event: MouseEvent) {
-    event.preventDefault();
-    if ((event.target as HTMLElement).slot === 'contextmenu') {
+    if (this.type === 'contextmenu' || event?.type === 'contextmenu') {
+      this.clickFlag = true;
+
+      const contextmenu = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
+      const contextmenuRect = contextmenu.assignedElements()[0].getBoundingClientRect();
+
+      this.options.positioning = 'absolute';
+      this.options.anchorCorner = 'start-start';
+      const x = event.clientX;
+      const y = event.clientY;
+      this.options.xOffset = x - contextmenuRect.top;
+      this.options.yOffset = y - contextmenuRect.left;
+
       this.toggleMenu();
     }
+
+    event.preventDefault();
   }
 
+  openClose() {
+    this.clickFlag = false;
+    this.isOpen = false;
+  }
   toggleMenu() {
     this.isOpen = !this.isOpen;
+
+    if (!this.isOpen) {
+      this.clickFlag = false;
+    }
   }
 
   setStyle = () => {
@@ -66,15 +94,17 @@ export class CfUiContextMenu {
     return (
       <Host id="cf-ui-menu" style={{ '--menu-height': this.height }}>
         <div id="anchor">
-          <slot name="click"></slot>
-          <slot name="contextmenu"></slot>
+          <slot></slot>
         </div>
         <md-menu
           part="menu"
           open={this.isOpen}
           anchor="anchor"
-          positioning="document"
-          onClosed={() => this.isOpen = false}
+          positioning={this.options?.positioning}
+          xOffset={this.options?.xOffset}
+          yOffset={this.options?.yOffset}
+          anchorCorner={this.options?.anchorCorner}
+          onClosed={() => this.openClose()}
         >
           <cf-ui-scrollbar part="scrollbar" height={ this.height }>
             {

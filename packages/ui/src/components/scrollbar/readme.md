@@ -14,6 +14,19 @@
 | `width`   | `width`   |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `'100%'`    |
 
 
+## Dependencies
+
+### Used by
+
+ - [cf-ui-menu](../menu)
+
+### Graph
+```mermaid
+graph TD;
+  cf-ui-menu --> cf-ui-scrollbar
+  style cf-ui-scrollbar fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

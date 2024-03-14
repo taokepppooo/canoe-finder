@@ -5,9 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MenuItem } from "./components/menu/types";
+import { MenuItem, MenuOption, MenuType } from "./components/menu/types";
 import { PartialOptions } from "overlayscrollbars";
-export { MenuItem } from "./components/menu/types";
+export { MenuItem, MenuOption, MenuType } from "./components/menu/types";
 export { PartialOptions } from "overlayscrollbars";
 export namespace Components {
     interface CfUiIconifyIcon {
@@ -18,6 +18,8 @@ export namespace Components {
     interface CfUiMenu {
         "height": string;
         "items": MenuItem[];
+        "options": MenuOption;
+        "type": MenuType;
     }
     interface CfUiScrollbar {
         "height": string;
@@ -59,6 +61,8 @@ declare namespace LocalJSX {
     interface CfUiMenu {
         "height"?: string;
         "items"?: MenuItem[];
+        "options"?: MenuOption;
+        "type"?: MenuType;
     }
     interface CfUiScrollbar {
         "height"?: string;

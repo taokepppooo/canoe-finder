@@ -6,7 +6,7 @@ interface CfUiScrollbarElement extends HTMLElement {
 }
 
 export const Page = () => {
-  const [options] = useState<PartialOptions>({
+const [options] = useState<PartialOptions>({
     overflow: {
       x: 'hidden',
     }
@@ -15,7 +15,7 @@ export const Page = () => {
 
   useEffect(() => {
     defineCustomElements(window)
-    if (scrollbarRef.current) {
+  if (scrollbarRef.current) {
       scrollbarRef.current.options = options;
     }
   }, [options])

@@ -5,5 +5,5 @@ type RouteData = {
 
 export const routesData: RouteData[] = [
   { label: 'Scrollbar View', path: '/scrollbar' },
-  { label: 'Context Menu', path: '/context-menu' }
+  { label: 'Menu', path: '/menu' }
 ];

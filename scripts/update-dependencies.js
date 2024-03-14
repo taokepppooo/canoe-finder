@@ -1,6 +1,6 @@
 /**
- * -p 包路径
- * -v 版本
+ * -p package path
+ * -v package version
  */
 
 const fs = require('fs');
@@ -24,7 +24,6 @@ if (!targetPackagePrefix) {
   process.exit(1);
 }
 
-// 函数用于递归地更新指定目录下的所有 package.json 文件
 function updateDependenciesRecursively(startPath) {
   if (!fs.existsSync(startPath)) return;
 
@@ -44,7 +43,6 @@ function updateDependenciesRecursively(startPath) {
   }
 }
 
-// 函数用于更新指定路径下的 package.json 中的特定依赖
 function updateDependenciesForPath(packagePath) {
   const packageJsonPath = path.join(packagePath, 'package.json');
   if (fs.existsSync(packageJsonPath)) {
@@ -64,10 +62,8 @@ function updateDependenciesForPath(packagePath) {
   }
 }
 
-// 更新项目根目录下的 package.json
 const rootDir = path.resolve(__dirname, '..');
 updateDependenciesForPath(rootDir);
 
-// 递归地更新 packages 目录下的每个包（包括嵌套的项目，但排除 node_modules）
 const packagesDir = path.join(rootDir, 'packages');
 updateDependenciesRecursively(packagesDir);

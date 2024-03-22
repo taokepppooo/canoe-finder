@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AppContainer } from './appContainer';
 import type { DesktopContainer } from '@/types/welcome';
@@ -71,9 +71,13 @@ export function Desktop() {
       <div className="h-full sm:p-x-3.75 md:p-x-20 lg:p-x-45 xl:p-x-60 sm:p-y-3.75 md:p-y-7.5 lg:p-y-20">
         <Swiper
           className="h-full"
-          modules={[Navigation, Pagination]}
+          modules={[Navigation, Pagination, Keyboard]}
           navigation
-          pagination={{ clickable: true }}>
+          pagination={{ clickable: true }}
+          keyboard={{
+            enabled: true,
+            onlyInViewport: true,
+          }}>
           {desktop.map((d) => (
             <SwiperSlide key={d.id}>{SwiperSlideWithScrollbar(d)}</SwiperSlide>
           ))}
